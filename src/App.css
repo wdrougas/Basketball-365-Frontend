@@ -13,6 +13,13 @@
   }
 }
 
+.Game-Container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: auto;
+  margin-left: 4%
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

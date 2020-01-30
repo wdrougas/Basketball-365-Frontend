@@ -20,7 +20,7 @@ componentDidMount() {
     return (
       <div className="App">
         <NavBar />
-        <GameCardContainer games={this.props.games}/>
+        <GameCardContainer />
       </div>
     );
   }

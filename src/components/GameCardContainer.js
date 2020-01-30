@@ -1,17 +1,33 @@
 import React from 'react'
 import GameCard from './GameCard'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 
 const GameCardContainer = props => {
+    var games = [].concat.apply([], props.games)
     return (
-        <div className='ui grid'>
-            {console.log(props.games)}
-            {/* {props.games.map(game => <GameCard key={game.id} game={game}/>)} */}
+        <div className='Game-Container'>
+            {games.map(game => {
+                let today = new Date()
+                let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+                if (game.date == todaysDate) {
+                return <GameCard key={game.id} game={game}/>}
+                }
+            )
+        }
         </div>
+        
     )
 }
 
-export default GameCardContainer
+const mapStateToProps = state => {
+    return {
+        games: state.games
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(GameCardContainer))
 
 
 // export default class AllMovies extends React.Component {
