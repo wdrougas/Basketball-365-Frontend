@@ -15,7 +15,7 @@ const TodayGameCardContainer = props => {
             {games.map(game => {
                 let today = new Date()
                 let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
-                if (game.date == todaysDate) {
+                if (!!game.date && game.date == todaysDate)  {
                 return <GameCard key={game.id} game={game}/>}
                 }
             )

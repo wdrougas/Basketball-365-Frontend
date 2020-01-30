@@ -20,7 +20,7 @@ import {combineReducers} from 'redux'
      }
  }
 
- const teamsReducer = (oldState=null, action) => {
+ const teamsReducer = (oldState=[], action) => {
      switch(action.type) {
          case FETCHED_TEAMS:
              return action.payload

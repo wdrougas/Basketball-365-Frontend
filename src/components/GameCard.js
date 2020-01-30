@@ -1,10 +1,12 @@
 import React from 'react'
-import {Card, Image, Divider} from 'semantic-ui-react'
+import {Card, Image} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 const GameCard = props => {
-    console.log(props.game)
+    if (!props.game) {
+        return null
+    } 
     return (
         <Card>
         <Image.Group size='small'>

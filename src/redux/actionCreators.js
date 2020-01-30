@@ -18,6 +18,8 @@ function fetchedPlayers(playersArray) {
     return {type: FETCHED_PLAYERS, payload: playersArray}
 }
 
+
+
 function loadingGames(){
     return {type: LOADING_GAMES}
 }
@@ -29,6 +31,7 @@ function loadingTeams(){
 function loadingPlayers(){
     return {type: LOADING_PLAYERS}
 }
+
 
 function fetchingGames(){
     return (dispatch) => {
