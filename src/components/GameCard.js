@@ -1,28 +1,29 @@
 import React from 'react'
-import {Card, Image, Icon} from 'semantic-ui-react'
-
+import {Card, Image, Divider} from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 const GameCard = props => {
+    console.log(props.game)
     return (
-    <Card>
-    <Image src={props.game.visiting_team_id.logo} wrapped ui={false} />
-    <Card.Content>
-      <Card.Header>Matthew</Card.Header>
-      <Card.Meta>
-        <span className='date'>Joined in 2015</span>
-      </Card.Meta>
-      <Card.Description>
-        Matthew is a musician living in Nashville.
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
+        <Card>
+        <Image.Group size='small'>
+            <Image src={props.game.visiting_team_logo} />
+            <Image src={props.game.home_team_logo} />
+        </Image.Group>
+        <Card.Content>
+        <Card.Header>{props.game.visiting_team_name} vs. {props.game.home_team_name}</Card.Header>
+        <Card.Description>
+            {props.game.arena} - {props.game.city}
+        </Card.Description>
+        </Card.Content>
+    </Card>
     )
 }
 
-export default GameCard
+// const mapStateToProps = state => {
+//     return {
+//         game: state.games
+//     }
+// }
+export default (GameCard)
