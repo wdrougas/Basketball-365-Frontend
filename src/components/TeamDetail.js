@@ -1,21 +1,42 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Image} from 'semantic-ui-react'
+import {Image, Container, List, Modal} from 'semantic-ui-react'
 
 
-const TeamDetail = props => {
-    console.log(props.team)
-    return  !props.team ? <div class="ui active transition visible dimmer">
-    <div class="content"><div class="ui text loader">Loading</div></div>
-  </div> : (
-        <div>
-            <br/>
-            <br/>
-            <h1>{props.team.name}</h1>
-            <Image src={props.team.logo} wrapped ui={false} />
-        </div>
-        )
+class TeamDetail extends React.Component {
+
+    render() {
+        console.log(this.props.team)
+        return  !this.props.team ? <div className="ui active transition visible dimmer">
+        <div className="content"><div className="ui text loader">Loading</div></div>
+      </div> : (
+            <div>
+                <br/>
+                <br/>
+                <h1>{this.props.team.name}</h1>
+                <div>
+                <Container textAlign='left'>
+                    <h3>Roster</h3>
+                    {this.props.team.players.map(player => {
+                    return <List key={player.id} player={player} >
+                        <List.Item >
+                    <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
+                        <Modal.Header>{player.first_name} {player.last_name}</Modal.Header>
+                        <Modal.Content>
+                            <p>College: {player.college}</p>
+                            <p>Years Pro: {player.yearsPro}</p>
+                            <p>Date of Birth: {player.date_of_birth}</p>
+                            <p>Country: {player.country} </p>
+                        </Modal.Content>
+                    </Modal>               
+                        </List.Item>
+                        </List>})}
+                </Container>
+                </div>
+            </div>
+            )
+        }
     }
 
 
