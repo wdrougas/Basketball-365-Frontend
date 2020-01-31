@@ -33,6 +33,8 @@ function loadingPlayers(){
 }
 
 
+
+
 function fetchingGames(){
     return (dispatch) => {
         dispatch(loadingGames())
@@ -58,6 +60,13 @@ function fetchingTeams() {
         .then(res => res.json())
         .then(teamsArray => {dispatch(fetchedTeams(teamsArray))})
     }
+}
+
+function selectingTeam() {
+    return (dispatch) => {
+
+    }
+
 }
 
 

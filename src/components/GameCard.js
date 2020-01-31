@@ -18,7 +18,7 @@ const GameCard = props => {
         <Card.Description>
             {props.game.arena} - {props.game.city}
         </Card.Description>
-        </Card.Content>
+        </Card.Content> 
     </Card>
     )
 }

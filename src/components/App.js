@@ -4,6 +4,7 @@ import '../App.css';
 import NavBar from './NavBar'
 import GameCardContainer from './GameCardContainer'
 import TodayGameCardContainer from './TodayGameCardContainer'
+import TeamDetail from './TeamDetail'
 import Loginform from './Loginform'
 import PlayerCardContainer from './PlayerCardContainer'
 import {connect} from 'react-redux'
@@ -28,9 +29,10 @@ componentDidMount() {
         <Switch>
           <Route exact path ='/' component={TodayGameCardContainer}/>
           {/* <Route path='/login' render={() => this.props.currentUser ? <Redirect to='/'/>: <Loginform />}/> */}
-          <Route path='/games' component={GameCardContainer} />
+          <Route exact path='/games' component={GameCardContainer} />
+          <Route path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />
-          <Route path='/players' component={PlayerCardContainer} />
+          <Route exact path='/players' component={PlayerCardContainer} />
         </Switch>
       </div>
     );
