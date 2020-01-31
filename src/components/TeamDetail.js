@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import {Image, Container, List, Modal} from 'semantic-ui-react'
+import {withRouter, Link} from 'react-router-dom'
+import {Image, Container, List, Modal, Segment, Grid, Divider} from 'semantic-ui-react'
 
 
 class TeamDetail extends React.Component {
@@ -15,12 +15,13 @@ class TeamDetail extends React.Component {
                 <br/>
                 <br/>
                 <h1>{this.props.team.name}</h1>
-                <div>
-                <Container textAlign='left'>
-                    <h3>Roster</h3>
-                    {this.props.team.players.map(player => {
-                    return <List key={player.id} player={player} >
-                        <List.Item >
+                <Segment>
+                <Grid columns ={3} relaxed='very'>
+                <Grid.Column>
+                <h3>Roster</h3>
+                {this.props.team.players.map(player => {
+                return <List key={player.id} player={player} >
+                <List.Item >
                     <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
                         <Modal.Header>{player.first_name} {player.last_name}</Modal.Header>
                         <Modal.Content>
@@ -30,10 +31,26 @@ class TeamDetail extends React.Component {
                             <p>Country: {player.country} </p>
                         </Modal.Content>
                     </Modal>               
-                        </List.Item>
-                        </List>})}
-                </Container>
-                </div>
+                    </List.Item>
+                    </List>})}
+                </Grid.Column>
+                <Grid.Column>
+                    <h3>Home Games</h3>
+                    {console.log(this.props.team.home_games)}
+                    {this.props.team.home_games.map(game => {
+                        return <List key={game.id} game={game}>
+                            <List.Item>
+                                <Image avatar src={game.visiting_team_logo} />
+                            <Link to={`/teams/${game.visiting_team_id}`}> <List.Header as='a'>{game.visiting_team_name}</List.Header></Link>
+                            </List.Item>
+                        </List>
+                    })}
+                </Grid.Column>
+                <Grid.Column>
+                    <h3>Away Games</h3>
+                </Grid.Column>
+                </Grid>
+                </Segment>
             </div>
             )
         }

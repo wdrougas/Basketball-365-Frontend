@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import TeamDetail from './TeamDetail'
 import {withRouter, Switch, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import {Segment} from 'semantic-ui-react'
 
 
 const TeamCardContainer = props => {
@@ -12,10 +13,10 @@ const TeamCardContainer = props => {
                 
                 <h1>Teams</h1>
                 <br/>
-                <div className='ui grid fluid container'>
+                    <Segment.Group>
                     {props.teams.map(team => {
                     return <TeamCard key={team.id} team={team}/>  })}
-                </div>
+                    </Segment.Group>
                 </div>
             )
         }
