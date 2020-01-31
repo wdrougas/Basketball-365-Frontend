@@ -49,6 +49,16 @@ class TeamDetail extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                     <h3>Away Games</h3>
+                    {this.props.team.visiting_games.map(game => {
+                        return <List key={game.id} game={game}>
+                            <List.Item>
+                                <Image avatar src={game.visiting_team_logo} />
+                                <List.Content>
+                    <List.Header as='a'><Link to={`/teams/${game.visiting_team_id}`}>{game.visiting_team_name}</Link> {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
+                                </List.Content>
+                            </List.Item>
+                        </List>
+                    })}
                 </Grid.Column>
                 </Grid>
                 </Segment>
