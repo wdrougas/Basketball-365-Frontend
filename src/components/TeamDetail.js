@@ -1,22 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {Image} from 'semantic-ui-react'
+
 
 const TeamDetail = props => {
     console.log(props.team)
-    return  (
-            <div>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-            </div>
+    return  !props.team ? <div class="ui active transition visible dimmer">
+    <div class="content"><div class="ui text loader">Loading</div></div>
+  </div> : (
+        <div>
+            <br/>
+            <br/>
+            <h1>{props.team.name}</h1>
+            <Image src={props.team.logo} wrapped ui={false} />
+        </div>
         )
-        //!this.props.team ? null : (
-        //     <div>
-        //     <h1>{this.props.team.name}</h1>
-        //     </div>
-        //)
     }
 
 
