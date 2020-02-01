@@ -53,7 +53,9 @@ class Standings extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      standings: state.standings
+      standings: state.standings.sort(function(a,b) {
+        return b.win - a.win
+      })
   }
 }
 
