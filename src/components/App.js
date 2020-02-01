@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, withRouter} from 'react-router-dom'
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
 import '../App.css';
 import NavBar from './NavBar'
 import GameCardContainer from './GameCardContainer'
@@ -23,13 +23,15 @@ componentDidMount() {
 
 
 
+
+
   render() {
     return (
       <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path ='/' component={TodayGameCardContainer}/>
-          {/* <Route path='/login' render={() => this.props.currentUser ? <Redirect to='/'/>: <Loginform />}/> */}
+          <Route exact path ='/' render={() => <Redirect to='/login' />}/>
+          <Route path='/login' component={Loginform}/> 
           <Route exact path='/games' component={GameCardContainer} />
           <Route path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />
@@ -45,6 +47,7 @@ const mapStateToProps = state => {
     games: state.games,
     players: state.players,
     teams: state.teams,
+    user: state.currentUser
   }
 }
 

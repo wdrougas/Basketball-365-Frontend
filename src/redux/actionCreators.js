@@ -1,10 +1,11 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
 const playersData = 'http://localhost:3000/players'
 const teamsData = 'http://localhost:3000/teams'
 const standingsData = 'http://localhost:3000/standings'
+const usersData = 'http://localhost:3000/users'
 
 function fetchedGames(gamesArray) {
     return {type: FETCHED_GAMES, payload: gamesArray}
@@ -22,6 +23,10 @@ function fetchedStandings(standingsArray) {
     return {type: FETCHED_STANDINGS, payload: standingsArray}
 }
 
+function fetchedUser(userObject) {
+    return {type: LOGGED_IN, payload: userObject}
+} 
+
 
 
 function loadingGames(){
@@ -38,6 +43,10 @@ function loadingPlayers(){
 
 function loadingStandings(){
     return {type: LOADING_STANDINGS}
+}
+
+function loggingIn() {
+    return {type: LOGGED_IN}
 }
 
 
@@ -80,4 +89,6 @@ function fetchingStandings() {
 }
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings}
+
+
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser}
