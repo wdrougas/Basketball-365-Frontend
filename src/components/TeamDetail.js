@@ -7,7 +7,6 @@ import {Image, Container, List, Modal, Segment, Grid, Divider} from 'semantic-ui
 class TeamDetail extends React.Component {
 
     render() {
-        console.log(this.props.team)
         return  !this.props.team ? <div className="ui active transition visible dimmer">
         <div className="content"><div className="ui text loader">Loading</div></div>
       </div> : (
@@ -54,7 +53,7 @@ class TeamDetail extends React.Component {
                             <List.Item>
                                 <Image avatar src={game.visiting_team_logo} />
                                 <List.Content>
-                    <List.Header as='a'><Link to={`/teams/${game.visiting_team_id}`}>{game.visiting_team_name}</Link> {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
+                    <List.Header as='a'>{game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} <Link to={`/teams/${game.home_team_id}`}>{game.home_team_name}</Link> </List.Header>
                                 </List.Content>
                             </List.Item>
                         </List>

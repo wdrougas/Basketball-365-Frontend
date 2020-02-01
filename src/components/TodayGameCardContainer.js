@@ -1,5 +1,5 @@
 import React from 'react'
-import GameCard from './GameCard'
+import TodayGameCard from './TodayGameCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
@@ -14,9 +14,9 @@ const TodayGameCardContainer = props => {
         <div className='ui grid fluid container'>
             {games.map(game => {
                 let today = new Date()
-                let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+                let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1)
                 if (!!game.date && game.date == todaysDate)  {
-                return <GameCard key={game.id} game={game}/>}
+                return <TodayGameCard key={game.id} game={game}/>}
                 }
             )
         }
@@ -32,15 +32,3 @@ const mapStateToProps = state => {
 }
 
 export default withRouter(connect(mapStateToProps)(TodayGameCardContainer))
-
-
-// export default class AllMovies extends React.Component {
-//     render() {
-//         return (
-//         <div className="ui grid">
-            
-//             {this.props.movies.map(movie => <MovieCard key ={movie.id} movie={movie} />) }
-            //</div>
-//         )
-//     }
-// }

@@ -11,9 +11,9 @@ const NavBar = () => {
                     <div className='content'>NBA App</div>
                 </h2>
             </Link>
-            <Link to='/players' className='item'>
+            <Link to='/standings' className='item'>
                 <h2 className='ui header'>
-                    <div className='content'>Players</div>
+                    <div className='content'>Standings</div>
                 </h2>
             </Link>
             <Link to='/teams' className='item'>

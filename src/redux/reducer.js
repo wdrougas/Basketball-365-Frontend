@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
- import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS} from './actionType'
+ import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS} from './actionType'
 
  const gamesReducer = (oldState=[], action) => {
      switch(action.type) {
@@ -28,11 +28,21 @@ import {combineReducers} from 'redux'
             return oldState
      }
  }
-//oldState equals to null so easier to render with a tertiary 
+
+ const standingsReducer = (oldState=[], action) => {
+    switch(action.type) {
+        case FETCHED_STANDINGS:
+            return action.payload
+        default:
+            return oldState
+    }
+ }
+
 const rootReducer = combineReducers({
     games: gamesReducer,
     players: playersReducer,
-    teams: teamsReducer, 
+    teams: teamsReducer,
+    standings: standingsReducer,
     comments: [],
     currentUser: null
 })
