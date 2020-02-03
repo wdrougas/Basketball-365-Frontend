@@ -42,6 +42,7 @@ handleSubmit = e => {
 
   
   render() {
+    console.log(this.props.teams)
     return (
     <div> 
         <br/>
@@ -55,7 +56,7 @@ handleSubmit = e => {
       <Form.Field id='email' label='Email' placeholder='Email' control='input' required/>
       <Form.Field id='password' type='password' label='Password' placeholder='Password' control='input' required/>
       <Form.Field id='team_id' label='Favorite Team' control='select' required>
-        {this.props.teams.map(team => <option key={team.id} value={`${team.id}`}>{team.name}</option>)}
+        {this.props.teams.map(team => <option key={team.id} value={`${team.id}`}><img src={team.logo} className='ui avatar image'/>{team.name}</option>)}
       </Form.Field>
       <Button type='submit'>Submit</Button>
     </Form.Group>

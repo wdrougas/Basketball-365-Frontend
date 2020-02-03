@@ -39,6 +39,10 @@ const NavBar = (props) => {
                     <div className='content'>Login</div>
                 </h2>
             </Link>}
+            {props.user ? 
+            <h3 className='ui header'>
+                <div className='content'>Welcome, {props.user.first_name}</div>
+            </h3>: null}
         </div>
     )
 }

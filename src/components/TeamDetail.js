@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, Container, List, Modal, Segment, Grid, Divider} from 'semantic-ui-react'
+import {Image, Container, List, Modal, Segment, Grid, Comment} from 'semantic-ui-react'
+import CommentContainer from './CommentContainer'
 
 
 class TeamDetail extends React.Component {
@@ -61,6 +62,7 @@ class TeamDetail extends React.Component {
                 </Grid.Column>
                 </Grid>
                 </Segment>
+                <CommentContainer />
             </div>
             )
         }
