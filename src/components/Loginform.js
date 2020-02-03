@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {fetchedUser} from '../redux/actionCreators'
+import {withRouter} from 'react-router-dom'
 
 class LoginForm extends React.Component {
     
@@ -22,7 +23,7 @@ class LoginForm extends React.Component {
             headers: {"Content-Type": 'application/json'},
             body: JSON.stringify({username: this.state.username, password: this.state.password})
         }).then(res => res.json())
-        .then(user => {dispatch(fetchedUser(user))})
+        .then(user => this.props.fetchedUser(user))
     }
 
     render() {
@@ -61,9 +62,13 @@ class LoginForm extends React.Component {
 }
 }
 
-const mapDispatchToProps = dispatch => ({
-    currentUser: (user) => {dispatch(fetchedUser(user))}
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchedUser: (user) => {
+      dispatch(fetchedUser(user))
+    }
+  }
+}
 
 
-export default connect((mapDispatchToProps)(LoginForm))
+export default connect(null, mapDispatchToProps)(LoginForm)

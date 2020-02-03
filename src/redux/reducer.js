@@ -53,7 +53,7 @@ const rootReducer = combineReducers({
     teams: teamsReducer,
     standings: standingsReducer,
     comments: [],
-    currentUser: null
+    currentUser: userReducer
 })
 
 export default rootReducer
