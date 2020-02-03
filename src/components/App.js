@@ -30,8 +30,8 @@ componentDidMount() {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path ='/' render={() => <Redirect to='/login' />}/>
-          <Route path='/login' component={Loginform}/> 
+          <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
+          <Route path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
           <Route exact path='/games' component={GameCardContainer} />
           <Route path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />

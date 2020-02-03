@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link, NavLink, withRouter } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div className='ui blue fixed inverted menu'>
             <Link to='/' className='item'>
@@ -26,18 +27,26 @@ const NavBar = () => {
                     <div className='content'>Games</div>
                 </h2>
             </Link>
+            {props.user ? null : 
             <Link to='/signup' className='item'>
                 <h2 className='ui right floated header'>
                     <div className='content'>Sign Up</div>
                 </h2>
-            </Link>
+            </Link>}
+            {props.user ? null :
             <Link to='/login' className='item'>
                 <h2 className='ui right floated header'>
                     <div className='content'>Login</div>
                 </h2>
-            </Link>
+            </Link>}
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.currentUser
+    }
+}
     
-export default NavBar
+export default connect(mapStateToProps)(NavBar)
