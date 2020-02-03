@@ -6,6 +6,7 @@ import GameCardContainer from './GameCardContainer'
 import TodayGameCardContainer from './TodayGameCardContainer'
 import TeamDetail from './TeamDetail'
 import Loginform from './Loginform'
+import Signupform from './Signupform'
 import Standings from './Standings'
 import {connect} from 'react-redux'
 import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings} from '../redux/actionCreators'
@@ -36,6 +37,7 @@ componentDidMount() {
           <Route path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />
           <Route exact path='/standings' component={Standings} />
+          <Route exact path='/signup' component={Signupform} />
         </Switch>
       </div>
     );
