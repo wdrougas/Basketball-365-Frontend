@@ -2,7 +2,8 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {fetchedUser} from '../redux/actionCreators'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
+import swal from 'sweetalert'
 
 class LoginForm extends React.Component {
     
@@ -17,13 +18,13 @@ class LoginForm extends React.Component {
 
 
     handleLoginSubmit = () => {
-        console.log('loginclicked')
         fetch(`http://localhost:3000/login`, {
             method: 'POST',
             headers: {"Content-Type": 'application/json'},
             body: JSON.stringify({username: this.state.username})
         }).then(res => res.json())
         .then(user => this.props.fetchedUser(user))
+        .catch(error => console.log(error.message))
     }
 
     render() {
@@ -36,7 +37,7 @@ class LoginForm extends React.Component {
     </Header>
     <Form size='large' onSubmit={this.handleLoginSubmit}>
       <Segment stacked>
-        <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' name='username' onChange={this.handleChange} value={this.state.username}/>
+        <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' name='username' onChange={this.handleChange} value={this.state.username} required/>
         <Form.Input
           fluid
           icon='lock'
@@ -46,6 +47,7 @@ class LoginForm extends React.Component {
           type='password'
           onChange={this.handleChange}
           value={this.state.password}
+          required
         />
 
         <Button color='teal' fluid size='large'>
@@ -54,7 +56,7 @@ class LoginForm extends React.Component {
       </Segment>
     </Form>
     <Message>
-      New to us? <a href='#'>Sign Up</a>
+      New to us? <Link to='/signup'>Sign up</Link>
     </Message>
   </Grid.Column>
 </Grid>

@@ -1,6 +1,8 @@
 import React from 'react'
 import {Form, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import swal from 'sweetalert'
+import {Redirect} from 'react-router-dom'
 
 const usersData = 'http://localhost:3000/users'
 class Signupform extends React.Component {
@@ -28,8 +30,14 @@ handleSubmit = e => {
 
   }
   fetch(usersData, configOptions)
-  .then(res => res.json())
-  .then(user => console.log(user))
+  .then(res => {
+    if (res.ok) {
+      swal("Done", "Profile created!", 'success')
+      window.location = 'http://localhost:3001/login'
+    } else {
+      swal('Sign up failed', 'Please try again', 'error')
+    }
+  })
   }
 
   
@@ -41,12 +49,12 @@ handleSubmit = e => {
         <br/>
     <Form onSubmit={this.handleSubmit}>
     <Form.Group widths='equal'>
-      <Form.Field id='first_name' label='First Name' placeholder='First Name' control='input' />
-      <Form.Field id='last_name' label='Last Name' placeholder='Last Name' control='input' />
-      <Form.Field id='username' label='Username' placeholder='Username' control='input' />
-      <Form.Field id='email' label='Email' placeholder='Email' control='input'  />
-      <Form.Field id='password' type='password' label='Password' placeholder='Password' control='input' />
-      <Form.Field id='team_id' label='Favorite Team' control='select' >
+      <Form.Field id='first_name' label='First Name' placeholder='First Name' control='input' required />
+      <Form.Field id='last_name' label='Last Name' placeholder='Last Name' control='input' required/>
+      <Form.Field id='username' label='Username' placeholder='Username' control='input' required/>
+      <Form.Field id='email' label='Email' placeholder='Email' control='input' required/>
+      <Form.Field id='password' type='password' label='Password' placeholder='Password' control='input' required/>
+      <Form.Field id='team_id' label='Favorite Team' control='select' required>
         {this.props.teams.map(team => <option key={team.id} value={`${team.id}`}>{team.name}</option>)}
       </Form.Field>
       <Button type='submit'>Submit</Button>
