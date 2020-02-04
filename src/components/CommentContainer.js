@@ -24,13 +24,18 @@ class CommentContainer extends React.Component {
         fetch('http://localhost:3000/comments', configOptions)
         .then(res => res.json())
         .then(comment => <Comment comment={comment}/>)
+        var form = document.getElementById("comment_form")
+        form.reset()
+        
     }
+
+    
 
     render() {
       return (
           <div>
           <p>Comment Container</p>
-          <Form reply>
+          <Form id="comment_form"reply>
          <Form.TextArea id='comment_box' />
           {this.props.user ? <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/> : null }
           </Form>

@@ -5,7 +5,6 @@ import {withRoute, Link} from 'react-router-dom'
 
 
 const TodayGameCard = props => {
-    console.log(props.game)
     return (
         <Card>
         <Image.Group size='small'>
