@@ -1,7 +1,9 @@
 import React from 'react'
-import {Comment, Form, Button} from 'semantic-ui-react'
+import {Comment, Form, Button, Header} from 'semantic-ui-react'
+import CommentCard from './CommentCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {addedComment} from '../redux/actionCreators'
 
 class CommentContainer extends React.Component {
     constructor(){
@@ -24,6 +26,7 @@ class CommentContainer extends React.Component {
         }
         fetch('http://localhost:3000/comments', configOptions)
         .then(res => res.json())
+        .then(comment => this.props.addedComment(comment))
         .catch(error => alert(error.message))
         var form = document.getElementById("comment_form")
         form.reset()
@@ -33,17 +36,21 @@ class CommentContainer extends React.Component {
     
 
     render() {
+        console.log(this.props.comments)
       return (
           <div>
-          <h4>Comments</h4>
           <Comment.Group>
+              <Header as='h3' dividing>
+                  Comments
+              </Header>
             {this.props.comments.map(comment => {
-            return <Comment key={comment.id} comment={comment} />})}
+            return <CommentCard key={comment.id} comment={comment} />})}
           </Comment.Group>
+          {this.props.user ? 
           <Form id="comment_form"reply>
          <Form.TextArea id='comment_box' />
-          {this.props.user ? <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/> : null }
-          </Form>
+          <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/>
+          </Form> : null }
           </div>
       )
     }
@@ -60,4 +67,12 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(CommentContainer))
+const mapDispatchToProps = dispatch => {
+    return {
+        addedComment: (comment) => {
+            dispatch(addedComment(comment))
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentContainer))
