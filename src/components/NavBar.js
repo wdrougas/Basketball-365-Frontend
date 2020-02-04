@@ -1,49 +1,67 @@
 import React from 'react'
 import {Link, NavLink, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
+import {Header, Segment, Grid} from 'semantic-ui-react'
 
 
 const NavBar = (props) => {
     return (
+        <Grid>
         <div className='ui blue fixed inverted menu'>
-            <Link to='/' className='item'>
-                <h2 className='ui header'>
-                    <i className='icon basketball ball' color='black'/>
-                    <div className='content'>NBA App</div>
-                </h2>
-            </Link>
-            <Link to='/standings' className='item'>
-                <h2 className='ui header'>
-                    <div className='content'>Standings</div>
-                </h2>
-            </Link>
-            <Link to='/teams' className='item'>
-                <h2 className='ui header'>
-                    <div className='content'>Teams</div>
-                </h2>
-            </Link>
-            <Link to='/games' className='item'>
-                <h2 className='ui header'>
-                    <div className='content'>Games</div>
-                </h2>
-            </Link>
+            <Grid.Column>
+                <Link to='/' className='item'>
+                    <Header>
+                        <i className='icon basketball ball' color='black'/>
+                        <div className='content'>NBA App</div>
+                    </Header>
+                </Link>
+            </Grid.Column>
+            <Grid.Column>
+                <Link to='/standings' className='item'>
+                    <Header>
+                        <div className='content'>Standings</div>
+                    </Header>
+                </Link>
+            </Grid.Column>
+            <Grid.Column>
+                <Link to='/teams' className='item'>
+                    <Header>
+                        <div className='content'>Teams</div>
+                    </Header>
+                </Link>
+            </Grid.Column>
+            <Grid.Column>
+                <Link to='/games' className='item'>
+                    <Header>
+                        <div className='content'>Games</div>
+                    </Header>
+                </Link>
+            </Grid.Column>
             {props.user ? null : 
-            <Link to='/signup' className='item'>
-                <h2 className='ui right floated header'>
-                    <div className='content'>Sign Up</div>
-                </h2>
-            </Link>}
+            <Grid.Column floated='right'>
+                <Link to='/signup' className='item'>
+                    <Header textAlign='right'>
+                        <div className='content'>Sign Up</div>
+                    </Header>
+                </Link>
+            </Grid.Column>}
             {props.user ? null :
-            <Link to='/login' className='item'>
-                <h2 className='ui right floated header'>
-                    <div className='content'>Login</div>
-                </h2>
-            </Link>}
+            <Grid.Column>
+                 <Link to='/login' className='item'>
+                    <Header textAlign='right'>
+                        Login
+                    </Header>
+                 </Link> 
+            </Grid.Column>}
             {props.user ? 
-            <h3 className='ui header'>
-                <div className='content'>Welcome, {props.user.first_name}</div>
-            </h3>: null}
+            <Grid.Column floated='right'>
+                <Header textAlign='right'>
+                    <div className='content'>Welcome, {props.user.first_name}</div>
+                </Header>
+            </Grid.Column>
+            : null}
         </div>
+        </Grid>
     )
 }
 
