@@ -1,7 +1,9 @@
 import React from 'react'
 import {Comment} from 'semantic-ui-react'
+import {withRouter} from 'react-router-dom'
 
 const Comment = props => {
+  debugger
     return (
         <Comment>
         <Comment.Content>
@@ -18,4 +20,4 @@ const Comment = props => {
     )
 }
 
-export default Comment
+export default withRouter(Comment)

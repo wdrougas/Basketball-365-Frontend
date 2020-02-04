@@ -1,11 +1,11 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
 const playersData = 'http://localhost:3000/players'
 const teamsData = 'http://localhost:3000/teams'
 const standingsData = 'http://localhost:3000/standings'
-const usersData = 'http://localhost:3000/users'
+const commentsData = 'http://localhost:3000/comments'
 
 function fetchedGames(gamesArray) {
     return {type: FETCHED_GAMES, payload: gamesArray}
@@ -27,6 +27,10 @@ function fetchedUser(userObject) {
     return {type: LOGGED_IN, payload: userObject}
 } 
 
+function fetchedComments(commentsArray) {
+    return {type: FETCHED_COMMENTS, payload: commentsArray}
+}
+
 
 
 function loadingGames(){
@@ -45,8 +49,8 @@ function loadingStandings(){
     return {type: LOADING_STANDINGS}
 }
 
-function loggingIn() {
-    return {type: LOGGED_IN}
+function loadingComments(){
+    return {type: LOADING_COMMENTS}
 }
 
 
@@ -88,7 +92,16 @@ function fetchingStandings() {
     }
 }
 
+function fetchingComments() {
+    return (dispatch) => {
+        dispatch(loadingComments())
+        fetch(commentsData)
+        .then(res => res.json())
+        .then(commentsArray => {dispatch(fetchedComments(commentsArray))})
+    }
+}
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser}
+
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments}

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Comment, Form, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 class CommentContainer extends React.Component {
     constructor(){
@@ -23,10 +24,10 @@ class CommentContainer extends React.Component {
         }
         fetch('http://localhost:3000/comments', configOptions)
         .then(res => res.json())
-        .then(comment => <Comment comment={comment}/>)
+        .catch(error => alert(error.message))
         var form = document.getElementById("comment_form")
         form.reset()
-        
+
     }
 
     
@@ -34,7 +35,11 @@ class CommentContainer extends React.Component {
     render() {
       return (
           <div>
-          <p>Comment Container</p>
+          <h4>Comments</h4>
+          <Comment.Group>
+            {this.props.comments.map(comment => {
+            return <Comment key={comment.id} comment={comment} />})}
+          </Comment.Group>
           <Form id="comment_form"reply>
          <Form.TextArea id='comment_box' />
           {this.props.user ? <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/> : null }
@@ -46,10 +51,13 @@ class CommentContainer extends React.Component {
     
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        user: state.currentUser
+        user: state.currentUser,
+        comments: state.comments.filter(
+            comment => {return comment.team.id ===  ownProps.team.id}
+        )
     }
 }
 
-export default connect(mapStateToProps)(CommentContainer)
+export default withRouter(connect(mapStateToProps)(CommentContainer))
