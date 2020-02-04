@@ -36,7 +36,6 @@ class CommentContainer extends React.Component {
     
 
     render() {
-        console.log(this.props.comments)
       return (
           <div>
           <Comment.Group>

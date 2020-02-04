@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
- import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT} from './actionType'
+ import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT, DELETE_COMMENT} from './actionType'
 
  const gamesReducer = (oldState=[], action) => {
      switch(action.type) {
@@ -53,6 +53,9 @@ import {combineReducers} from 'redux'
             return action.payload
         case ADDED_COMMENT: 
             return [...oldState, action.payload]
+        case DELETE_COMMENT: 
+            const removalIndex = oldState.findIndex(comment => comment.id === action.payload.id)
+            return [...oldState.slice(0, removalIndex), ...oldState.slice(removalIndex + 1)]
         default:
             return oldState
      }

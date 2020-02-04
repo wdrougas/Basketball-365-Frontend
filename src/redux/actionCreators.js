@@ -1,4 +1,4 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
@@ -33,6 +33,10 @@ function fetchedComments(commentsArray) {
 
 function addedComment(commentObject) {
     return {type: ADDED_COMMENT, payload: commentObject}
+}
+
+function deleteComment(commentObject) {
+    return {type: DELETE_COMMENT, payload: commentObject}
 }
 
 
@@ -108,4 +112,4 @@ function fetchingComments() {
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment}
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment}
