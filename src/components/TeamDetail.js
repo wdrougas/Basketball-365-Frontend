@@ -14,6 +14,7 @@ class TeamDetail extends React.Component {
             <div>
                 <br/>
                 <br/>
+                <br />
                 <h1>{this.props.team.name}</h1>
                 <Segment>
                 <Grid columns ={3} relaxed='very'>
@@ -61,8 +62,12 @@ class TeamDetail extends React.Component {
                     })}
                 </Grid.Column>
                 </Grid>
+                <Grid centered columns={2}>
+                    <Grid.Column>
+                        <CommentContainer team={this.props.team}/>
+                    </Grid.Column>
+                </Grid>
                 </Segment>
-                <CommentContainer team={this.props.team}/>
             </div>
             )
         }

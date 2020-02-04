@@ -12,28 +12,28 @@ const NavBar = (props) => {
                 <Link to='/' className='item'>
                     <Header>
                         <i className='icon basketball ball' color='black'/>
-                        <div className='content'>NBA App</div>
+                        NBA App
                     </Header>
                 </Link>
             </Grid.Column>
             <Grid.Column>
                 <Link to='/standings' className='item'>
                     <Header>
-                        <div className='content'>Standings</div>
+                        Standings
                     </Header>
                 </Link>
             </Grid.Column>
             <Grid.Column>
                 <Link to='/teams' className='item'>
                     <Header>
-                        <div className='content'>Teams</div>
+                        Teams
                     </Header>
                 </Link>
             </Grid.Column>
             <Grid.Column>
                 <Link to='/games' className='item'>
                     <Header>
-                        <div className='content'>Games</div>
+                        Games
                     </Header>
                 </Link>
             </Grid.Column>
@@ -41,7 +41,7 @@ const NavBar = (props) => {
             <Grid.Column floated='right'>
                 <Link to='/signup' className='item'>
                     <Header textAlign='right'>
-                        <div className='content'>Sign Up</div>
+                        Sign Up
                     </Header>
                 </Link>
             </Grid.Column>}
@@ -55,12 +55,18 @@ const NavBar = (props) => {
             </Grid.Column>}
             {props.user ? 
             <Grid.Column floated='right'>
-                <Header textAlign='right'>
-                    <div className='content'>Welcome, {props.user.first_name}</div>
+                <Header textAlign='right' className='item' color='black'>
+                    Welcome, {props.user.first_name}
+                </Header>
+            </Grid.Column> : null}
+            {props.user ?
+            <Grid.Column>
+                <Header textAlign='right' className='item' color='black'>
+                    Logout
                 </Header>
             </Grid.Column>
             : null}
-        </div>
+          </div>
         </Grid>
     )
 }

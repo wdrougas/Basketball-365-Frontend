@@ -9,6 +9,7 @@ class Standings extends React.Component {
         <div>
           <br/>
           <br/>
+          <br/>
           <h2>Standings</h2>
           <Segment>
             <Grid columns={2} relaxed='very'>
