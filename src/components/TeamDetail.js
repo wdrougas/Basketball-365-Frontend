@@ -62,7 +62,7 @@ class TeamDetail extends React.Component {
                 </Grid.Column>
                 </Grid>
                 </Segment>
-                <CommentContainer />
+                <CommentContainer team={this.props.team}/>
             </div>
             )
         }

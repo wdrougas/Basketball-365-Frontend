@@ -7,7 +7,6 @@ import {Segment} from 'semantic-ui-react'
 
 const GameCardContainer = props => {
     var games = [].concat.apply([], props.games)
-    console.log(games)
     return (
         <div>
             <br/>

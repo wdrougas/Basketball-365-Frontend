@@ -9,6 +9,21 @@ class CommentContainer extends React.Component {
 
      addComment = (e) => {
         console.log('adding comment')
+        let configOptions = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: this.props.user.id,
+                team_id: this.props.team.id,
+                body: document.getElementById('comment_box').value
+            })
+        }
+        fetch('http://localhost:3000/comments', configOptions)
+        .then(res => res.json())
+        .then(comment => <Comment comment={comment}/>)
     }
 
     render() {
@@ -16,7 +31,7 @@ class CommentContainer extends React.Component {
           <div>
           <p>Comment Container</p>
           <Form reply>
-         <Form.TextArea />
+         <Form.TextArea id='comment_box' />
           {this.props.user ? <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/> : null }
           </Form>
           </div>
