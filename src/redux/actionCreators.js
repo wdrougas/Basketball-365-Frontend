@@ -1,4 +1,4 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
@@ -42,6 +42,10 @@ function deleteComment(commentObject) {
 function selectedDate(date) {
     console.log('hello')
     // return {type: SELECTED_DATE, payload: date}
+}
+
+function loggedOut() {
+    return {type: LOGGED_OUT}
 }
 
 
@@ -117,4 +121,4 @@ function fetchingComments() {
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, selectedDate}
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, selectedDate, loggedOut}

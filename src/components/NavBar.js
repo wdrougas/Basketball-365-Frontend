@@ -2,9 +2,17 @@ import React from 'react'
 import {Link, NavLink, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Header, Segment, Grid} from 'semantic-ui-react'
+import {loggedOut} from '../redux/actionCreators'
 
 
-const NavBar = (props) => {
+class NavBar extends React.Component {
+
+
+logOut = () => {
+
+}
+
+  render() {
     return (
         <Grid>
         <div className='ui blue fixed inverted menu'>
@@ -37,7 +45,7 @@ const NavBar = (props) => {
                     </Header>
                 </Link>
             </Grid.Column>
-            {props.user ? null : 
+            {this.props.user ? null : 
             <Grid.Column floated='right'>
                 <Link to='/signup' className='item'>
                     <Header textAlign='right'>
@@ -45,7 +53,7 @@ const NavBar = (props) => {
                     </Header>
                 </Link>
             </Grid.Column>}
-            {props.user ? null :
+            {this.props.user ? null :
             <Grid.Column>
                  <Link to='/login' className='item'>
                     <Header textAlign='right'>
@@ -53,15 +61,15 @@ const NavBar = (props) => {
                     </Header>
                  </Link> 
             </Grid.Column>}
-            {props.user ? 
+            {this.props.user ? 
             <Grid.Column floated='right'>
                 <Header textAlign='right' className='item' color='black'>
-                    Welcome, {props.user.first_name}
+                    Welcome, {this.props.user.first_name}
                 </Header>
             </Grid.Column> : null}
-            {props.user ?
+            {this.props.user ?
             <Grid.Column>
-                <Header textAlign='right' className='item' color='black'>
+                <Header textAlign='right' className='item' color='black' onClick={this.logOut}>
                     Logout
                 </Header>
             </Grid.Column>
@@ -69,6 +77,7 @@ const NavBar = (props) => {
           </div>
         </Grid>
     )
+    }
 }
 
 const mapStateToProps = state => {
@@ -76,5 +85,13 @@ const mapStateToProps = state => {
         user: state.currentUser
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loggedOut: () => {
+            dispatch(loggedOut())
+        }
+    }
+}
     
-export default connect(mapStateToProps)(NavBar)
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
