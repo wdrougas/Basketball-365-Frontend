@@ -45,7 +45,7 @@ function selectedDate(date) {
 }
 
 function loggedOut() {
-    return {type: LOGGED_OUT}
+    return {type: LOGGED_OUT, payload: null}
 }
 
 

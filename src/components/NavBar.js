@@ -8,9 +8,6 @@ import {loggedOut} from '../redux/actionCreators'
 class NavBar extends React.Component {
 
 
-logOut = () => {
-
-}
 
   render() {
     return (
@@ -69,7 +66,7 @@ logOut = () => {
             </Grid.Column> : null}
             {this.props.user ?
             <Grid.Column>
-                <Header textAlign='right' className='item' color='black' onClick={this.logOut}>
+                <Header textAlign='right' className='item' color='black' onClick={this.props.loggedOut}>
                     Logout
                 </Header>
             </Grid.Column>
