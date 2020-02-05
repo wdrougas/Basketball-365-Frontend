@@ -11,6 +11,7 @@ import Standings from './Standings'
 import {connect} from 'react-redux'
 import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments} from '../redux/actionCreators'
 import TeamCardContainer from './TeamCardContainer';
+import UserProfile from './UserProfile'
 
 
 
@@ -37,12 +38,13 @@ render() {
         <NavBar />
         <Switch>
           <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
-          <Route path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
+          <Route exact path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
           <Route exact path='/games' component={GameCardContainer} />
-          <Route path='/teams/:id' component={TeamDetail} />
+          <Route exact path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />
           <Route exact path='/standings' component={Standings} />
           <Route exact path='/signup' component={Signupform} />
+          <Route exact path='/:userId' render={() => this.props.user ? <UserProfile />: <Redirect to='/login' />} />
         </Switch>
       </div>
     );

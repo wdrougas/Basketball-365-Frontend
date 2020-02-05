@@ -16,7 +16,7 @@ class Standings extends React.Component {
               <Grid.Column>
                 <h3>East Standings</h3>
                 {this.props.standings.map(standing => {
-                  if (standing.conference == 'east') {
+                  if (standing.conference === 'east') {
                   return <List key={standing.id}>
                     <List.Item>
                       <Image avatar src={standing.team_logo} />
@@ -32,7 +32,7 @@ class Standings extends React.Component {
               <Grid.Column>
                 <h3>West Standings</h3>
                 {this.props.standings.map(standing => {
-                  if (standing.conference == 'west') {
+                  if (standing.conference === 'west') {
                   return <List key={standing.id}>
                     <List.Item>
                       <Image avatar src={standing.team_logo} />

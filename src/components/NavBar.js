@@ -60,9 +60,11 @@ class NavBar extends React.Component {
             </Grid.Column>}
             {this.props.user ? 
             <Grid.Column floated='right'>
-                <Header textAlign='right' className='item' color='black'>
-                    Welcome, {this.props.user.first_name}
-                </Header>
+                <Link to={`/${this.props.user.id}`} className='item'>
+                    <Header textAlign='right'>
+                        Welcome, {this.props.user.first_name}
+                    </Header>
+                </Link>
             </Grid.Column> : null}
             {this.props.user ?
             <Grid.Column>
