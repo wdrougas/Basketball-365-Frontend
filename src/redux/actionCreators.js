@@ -1,4 +1,4 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
@@ -6,6 +6,7 @@ const playersData = 'http://localhost:3000/players'
 const teamsData = 'http://localhost:3000/teams'
 const standingsData = 'http://localhost:3000/standings'
 const commentsData = 'http://localhost:3000/comments'
+const favoritesData = 'http://localhost:3000/favorites'
 
 function fetchedGames(gamesArray) {
     return {type: FETCHED_GAMES, payload: gamesArray}
@@ -39,13 +40,17 @@ function deleteComment(commentObject) {
     return {type: DELETE_COMMENT, payload: commentObject}
 }
 
-function selectedDate(date) {
-    console.log('hello')
-    // return {type: SELECTED_DATE, payload: date}
-}
 
 function loggedOut() {
     return {type: LOGGED_OUT, payload: null}
+}
+
+function fetchedFavorites(favoritesArray) {
+    return {type: FETCHED_FAVORITES, payload: favoritesArray}
+}
+
+function addedFavorite(favorite) {
+    return {type: ADDED_FAVORITE, payload: favorite}
 }
 
 
@@ -68,6 +73,10 @@ function loadingStandings(){
 
 function loadingComments(){
     return {type: LOADING_COMMENTS}
+}
+
+function loadingFavorites(){
+    return {type: LOADING_FAVORITES}
 }
 
 
@@ -118,7 +127,16 @@ function fetchingComments() {
     }
 }
 
+function fetchingFavorites() {
+    return (dispatch) => {
+        dispatch(loadingFavorites())
+        fetch(favoritesData)
+        .then(res => res.json())
+        .then(favoritesArray => {dispatch(fetchedFavorites(favoritesArray))})
+    }
+}
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, selectedDate, loggedOut}
+
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite}

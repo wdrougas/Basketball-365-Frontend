@@ -1,11 +1,41 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, Container, List, Modal, Segment, Grid, Comment} from 'semantic-ui-react'
+import {Image, Container, List, Modal, Segment, Grid, Comment, Icon} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
+import swal from 'sweetalert'
+import {addedFavorite} from '../redux/actionCreators'
+// import state from 'sweetalert/typings/modules/state'
 
 
 class TeamDetail extends React.Component {
+
+    createFavorite = (player) => { 
+        let playerId = player.id      
+        let configOptions = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: this.props.user.id,
+                player_id: playerId
+            })
+        }
+        fetch('http://localhost:3000/favorites', configOptions)
+        .then(res => res.json())
+      .then(data => {
+          if (data.message === "Player added to favorites!") {
+              let newObj = JSON.parse(data.favorite)
+              this.props.addedFavorite(newObj)
+              swal("Done!", data.message, "success")
+          } else {
+              swal("Error!", data.message, 'error')
+          }
+      })
+      .catch(error => alert(error.message))
+    }
 
     render() {
         return  !this.props.team ? <div className="ui active transition visible dimmer">
@@ -24,7 +54,7 @@ class TeamDetail extends React.Component {
                 return <List key={player.id} player={player} >
                 <List.Item >
                     <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
-                        <Modal.Header>{player.first_name} {player.last_name}</Modal.Header>
+                        <Modal.Header>{player.first_name} {player.last_name} {this.props.user ? <Icon name='heart' onClick={() => this.createFavorite(player)} /> : null }</Modal.Header>
                         <Modal.Content>
                             <p>College: {player.college}</p>
                             <p>Years Pro: {player.yearsPro}</p>
@@ -74,15 +104,23 @@ class TeamDetail extends React.Component {
     }
 
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addedFavorite: (favorite) => {
+            dispatch(addedFavorite(favorite))
+        }
+    }
+}
 
 const mapStateToProps = (store, ownProps) => {
     return {
         team: store.teams.find(
             team => {return team.id === parseInt(ownProps.match.params.id)}
-        )
+        ),
+        user: store.currentUser
     }
 }
 
 
 
-export default withRouter(connect(mapStateToProps)(TeamDetail))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TeamDetail))

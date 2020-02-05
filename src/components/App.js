@@ -9,7 +9,7 @@ import Loginform from './Loginform'
 import Signupform from './Signupform'
 import Standings from './Standings'
 import {connect} from 'react-redux'
-import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments} from '../redux/actionCreators'
+import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments, fetchingFavorites} from '../redux/actionCreators'
 import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
 
@@ -24,6 +24,7 @@ componentDidMount() {
   this.props.fetchingTeams()
   this.props.fetchingStandings()
   this.props.fetchingComments()
+  this.props.fetchingFavorites()
 }
 
 
@@ -58,7 +59,8 @@ const mapStateToProps = state => {
     teams: state.teams,
     user: state.currentUser,
     comments: state.comments,
-    date: state.date
+    date: state.date,
+    favorites: state.favorites
   }
 }
 
@@ -67,7 +69,8 @@ const mapDispatchToProps = dispatch => ({
     fetchingTeams: () => {dispatch(fetchingTeams())},
     fetchingPlayers: () => {dispatch(fetchingPlayers())},
     fetchingStandings: () => {dispatch(fetchingStandings())},
-    fetchingComments: () => {dispatch(fetchingComments())}
+    fetchingComments: () => {dispatch(fetchingComments())},
+    fetchingFavorites: () => {dispatch(fetchingFavorites())}
   }
 )
 

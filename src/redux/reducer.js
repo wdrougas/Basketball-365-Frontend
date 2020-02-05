@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
- import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT} from './actionType'
+ import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT, FETCHED_FAVORITES, ADDED_FAVORITE} from './actionType'
 
  const gamesReducer = (oldState=[], action) => {
      switch(action.type) {
@@ -63,6 +63,17 @@ import {combineReducers} from 'redux'
      }
  }
 
+ const favoritesReducer = (oldState=[], action) => {
+     switch(action.type) {
+         case FETCHED_FAVORITES:
+             return action.payload
+         case ADDED_FAVORITE: 
+             return [...oldState, action.payload]
+         default:
+             return oldState
+     }
+ }
+
 
 let today = new Date()
 let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1)
@@ -83,7 +94,8 @@ const rootReducer = combineReducers({
     standings: standingsReducer,
     comments: commentsReducer,
     currentUser: userReducer,
-    date: dateReducer
+    date: dateReducer,
+    favorites: favoritesReducer
 })
 
 export default rootReducer
