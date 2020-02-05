@@ -12,6 +12,8 @@ import {connect} from 'react-redux'
 import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments} from '../redux/actionCreators'
 import TeamCardContainer from './TeamCardContainer';
 
+
+
 class App extends React.Component {
 
 
@@ -26,8 +28,8 @@ componentDidMount() {
 
 
 
-
-  render() {
+render() {
+  
     return (
       <div className="App">
         <NavBar />
@@ -51,7 +53,8 @@ const mapStateToProps = state => {
     players: state.players,
     teams: state.teams,
     user: state.currentUser,
-    comments: state.comments
+    comments: state.comments,
+    date: state.date
   }
 }
 
