@@ -40,7 +40,8 @@ function deleteComment(commentObject) {
 }
 
 function selectedDate(date) {
-    return {type: SELECTED_DATE, payload: date}
+    console.log('hello')
+    // return {type: SELECTED_DATE, payload: date}
 }
 
 

@@ -1,14 +1,27 @@
 import React from 'react'
 import GameCard from './GameCard'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import {Segment} from 'semantic-ui-react'
 import DateFnsUtils from '@date-io/date-fns'
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
 import {selectedDate} from '../redux/actionCreators'
 
 class GameCardContainer extends React.Component {
+    constructor(){
+        super() 
+        let today = new Date()
+        let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate())
+        this.state = {
+            selectedDate: todaysDate
+        }
+    }
 
+changeDate = date => {
+    let selectedDate = date
+    let x = selectedDate.toISOString().substring(0,10)
+    let y = x.replace(/-0+/g, '-')
+    this.setState({selectedDate: y})
+}
 
     
 render() {
@@ -21,12 +34,15 @@ render() {
             <h1>2019-2020 Schedule</h1>
             <br/>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DatePicker value={this.props.date} onChange={() => this.props.selectedDate()}/>
+                <DatePicker value = {this.state.selectedDate} onChange={(date) => this.changeDate(date)}/>
             </MuiPickersUtilsProvider>
+            <br />
             <br />
             <div className='ui grid fluid container'>
             {games.map(game => {
-                 {return <GameCard key={game.id} game={game}/>}
+                if (this.state.selectedDate === game.date) {
+                  {return <GameCard key={game.id} game={game}/>}
+                }
                 }
               )
             }       
@@ -38,17 +54,9 @@ render() {
 
 const mapStateToProps = state => {
     return {
-        games: state.games,
-        date: state.date
+        games: state.games
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        selectedDate: (date) => {
-            dispatch(selectedDate(date))
-        }
-    }
-}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameCardContainer))
+export default connect(mapStateToProps)(GameCardContainer)
