@@ -59,8 +59,7 @@ const mapStateToProps = state => {
     teams: state.teams,
     user: state.currentUser,
     comments: state.comments,
-    date: state.date,
-    favorites: state.favorites
+    date: state.date
   }
 }
 

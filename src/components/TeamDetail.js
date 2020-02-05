@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, Container, List, Modal, Segment, Grid, Comment, Icon} from 'semantic-ui-react'
+import {Image, Container, List, Modal, Segment, Grid, Comment, Button} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite} from '../redux/actionCreators'
@@ -37,6 +37,10 @@ class TeamDetail extends React.Component {
       .catch(error => alert(error.message))
     }
 
+
+    removeFavorite = (favorite) => {
+    }
+
     render() {
         return  !this.props.team ? <div className="ui active transition visible dimmer">
         <div className="content"><div className="ui text loader">Loading</div></div>
@@ -54,7 +58,13 @@ class TeamDetail extends React.Component {
                 return <List key={player.id} player={player} >
                 <List.Item >
                     <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
-                        <Modal.Header>{player.first_name} {player.last_name} {this.props.user ? <Icon name='heart' onClick={() => this.createFavorite(player)} /> : null }</Modal.Header>
+                        <Modal.Header>
+                            <p>{player.first_name} {player.last_name}
+
+                            {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.createFavorite(player)}>Add To Favorites</Button> : <Button size='mini' onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}>Remove From Favorites</Button>}
+                            
+                             </p>
+                            </Modal.Header>
                         <Modal.Content>
                             <p>College: {player.college}</p>
                             <p>Years Pro: {player.yearsPro}</p>
@@ -117,7 +127,8 @@ const mapStateToProps = (store, ownProps) => {
         team: store.teams.find(
             team => {return team.id === parseInt(ownProps.match.params.id)}
         ),
-        user: store.currentUser
+        user: store.currentUser,
+        favorites: store.favorites
     }
 }
 

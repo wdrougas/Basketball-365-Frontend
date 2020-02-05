@@ -44,6 +44,8 @@ import {combineReducers} from 'redux'
              return action.payload
         case LOGGED_OUT:
             return action.payload
+        case ADDED_FAVORITE:
+            return {...oldState, favorites: [...oldState.favorites, action.payload]}
         default:
             return oldState
      }
