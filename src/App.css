@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  text-align: center
+}
+
+.Login {
+  background-image: url('https://exposure.imgix.net/production/photos/run8ewmob18uc9efy0rtme910fccngp0c9cz/original.jpg?w=1400&fm=pjpg&auto=format')
 }
 
 .App-logo {

@@ -1,31 +1,45 @@
 import React from 'react'
 import TodayGameCard from './TodayGameCard'
+import GameCard from './GameCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Card} from 'semantic-ui-react'
+import {Card, Label, Grid} from 'semantic-ui-react'
 
 
 
 const TodayGameCardContainer = props => {
-    var games = [].concat.apply([], props.games)
+    var games = props.user.team.home_games.concat(props.user.team.visiting_games)
+    var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
+    const removalIndex = sorted.findIndex(game => game.arena === "")
+    var playedGames = sorted.slice(0, removalIndex)
+    var remainingGames = sorted.slice(removalIndex)
+    var lastGame = playedGames.slice(-1)[0]
+    var currentGame = remainingGames[0]
+    var nextGame = remainingGames[1]
     return (
         <div>
         <br/>
         <br/>
         <br/>
-        <h1>Today's Games</h1>
+        <h1>{props.user.team.name}</h1>
         <br/>
         <div className='ui grid fluid container'>
-            <Card.Group itemsPerRow={4}>
-                {games.map(game => {
-                    let today = new Date()
-                    let todaysDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1)
-                    if (!!game.date && game.date == todaysDate)  {
-                    return <TodayGameCard key={game.id} game={game}/>}
-                    }
-                    )
-                }   
-            </Card.Group>
+            <Grid columns={3}>
+                <Grid.Row>
+                    <Grid.Column>
+                        <h3>Previous Game</h3>
+                        <GameCard key={lastGame.id} game={lastGame}/>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <h3>Upcoming Game</h3>
+                        <TodayGameCard key={currentGame.id} game={currentGame}/>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <h3>Following Game</h3>
+                        <TodayGameCard key={nextGame.id} game={nextGame}/>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </div>
         </div>
     )
@@ -33,7 +47,8 @@ const TodayGameCardContainer = props => {
 
 const mapStateToProps = state => {
     return {
-        games: state.games
+        games: state.games,
+        user: state.currentUser
     }
 }
 
