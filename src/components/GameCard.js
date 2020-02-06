@@ -1,7 +1,6 @@
 import React from 'react'
 import {Card, Image} from 'semantic-ui-react'
-import {connect} from 'react-redux'
-import {withRoute, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const GameCard = props => {

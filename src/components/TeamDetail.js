@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, Container, List, Modal, Segment, Grid, Comment, Button} from 'semantic-ui-react'
+import {Image, List, Modal, Segment, Grid,Button} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'

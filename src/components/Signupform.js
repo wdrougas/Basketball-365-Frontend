@@ -2,7 +2,7 @@ import React from 'react'
 import {Form, Button, Grid, Header, Segment} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import swal from 'sweetalert'
-import {Redirect, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 const usersData = 'http://localhost:3000/users'
 class Signupform extends React.Component {

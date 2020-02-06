@@ -1,10 +1,8 @@
 import React from 'react'
 import GameCard from './GameCard'
 import {connect} from 'react-redux'
-import {Segment} from 'semantic-ui-react'
 import DateFnsUtils from '@date-io/date-fns'
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
-import {selectedDate} from '../redux/actionCreators'
 
 class GameCardContainer extends React.Component {
     constructor(){
@@ -41,7 +39,7 @@ render() {
             <div className='ui grid fluid container'>
             {games.map(game => {
                 if (this.state.selectedDate === game.date) {
-                  {return <GameCard key={game.id} game={game}/>}
+                  return <GameCard key={game.id} game={game}/>
                 }
                 }
               )

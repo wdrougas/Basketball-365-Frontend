@@ -3,7 +3,6 @@ import {Comment} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deleteComment} from '../redux/actionCreators'
-import swal from 'sweetalert'
 
 class CommentCard extends React.Component {
   constructor(){

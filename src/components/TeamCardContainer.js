@@ -1,9 +1,7 @@
 import React from 'react'
 import TeamCard from './TeamCard'
 import {connect} from 'react-redux'
-import TeamDetail from './TeamDetail'
-import {withRouter, Switch, Route} from 'react-router-dom'
-import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {Segment} from 'semantic-ui-react'
 
 

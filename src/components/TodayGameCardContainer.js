@@ -3,7 +3,7 @@ import TodayGameCard from './TodayGameCard'
 import GameCard from './GameCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Card, Label, Grid} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 
 
 
