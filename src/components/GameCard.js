@@ -1,14 +1,14 @@
 import React from 'react'
-import {Card, Image} from 'semantic-ui-react'
+import {Card, Image, Row} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 
 const GameCard = props => {
     return (
         <Card>
-        <Image.Group size='small'>
-            <Image src={props.game.visiting_team_logo} />
-            <Image src={props.game.home_team_logo} />
+        <Image.Group itemsPerRow={2}>
+            <Image src={props.game.visiting_team_logo} size='small' />
+            <Image src={props.game.home_team_logo} size='small' />
         </Image.Group>
         <Card.Content>
         <Card.Header>{props.game.visiting_team_name} vs. {props.game.home_team_name}</Card.Header>

@@ -17,7 +17,7 @@ const TodayGameCardContainer = props => {
     var currentGame = remainingGames[0]
     var nextGame = remainingGames[1]
     return (
-        <div>
+        <div >
         <br/>
         <br/>
         <br/>

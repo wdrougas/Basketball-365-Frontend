@@ -1,13 +1,16 @@
 import React from 'react'
 import {Link, NavLink, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Header, Segment, Grid} from 'semantic-ui-react'
+import {Header, Segment, Grid, Dropdown} from 'semantic-ui-react'
 import {loggedOut} from '../redux/actionCreators'
 
 
 class NavBar extends React.Component {
 
 
+fun() {
+    this.props.history.push(`/${this.props.user.id}`)
+}
 
   render() {
     return (
@@ -60,11 +63,12 @@ class NavBar extends React.Component {
             </Grid.Column>}
             {this.props.user ? 
             <Grid.Column floated='right'>
-                <Link to={`/${this.props.user.id}`} className='item'>
-                    <Header textAlign='right'>
-                        Welcome, {this.props.user.first_name}
-                    </Header>
-                </Link>
+                <Dropdown text={this.props.user.first_name}>
+                    <Dropdown.Menu>
+                       <Dropdown.Item text='Profile' onClick={this.fun.bind(this)}/>
+                        <Dropdown.Item text='Logout' onClick={this.props.loggedOut}/>
+                    </Dropdown.Menu>
+                </Dropdown>
             </Grid.Column> : null}
           </div>
         </Grid>
@@ -86,4 +90,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
     
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

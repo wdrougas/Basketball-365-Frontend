@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom'
 const TodayGameCard = props => {
     return (
         <Card>
-        <Image.Group size='small'>
-            <Image src={props.game.visiting_team_logo} />
-            <Image src={props.game.home_team_logo} />
+        <Image.Group itemsPerRow={2}>
+            <Image src={props.game.visiting_team_logo} size='small'/>
+            <Image src={props.game.home_team_logo} size='small' />
         </Image.Group>
         <Card.Content>
         <Card.Header>

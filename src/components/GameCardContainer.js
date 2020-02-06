@@ -3,6 +3,7 @@ import GameCard from './GameCard'
 import {connect} from 'react-redux'
 import DateFnsUtils from '@date-io/date-fns'
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
+import { Grid } from 'semantic-ui-react'
 
 class GameCardContainer extends React.Component {
     constructor(){
@@ -37,13 +38,16 @@ render() {
             <br />
             <br />
             <div className='ui grid fluid container'>
-            {games.map(game => {
-                if (this.state.selectedDate === game.date) {
-                  return <GameCard key={game.id} game={game}/>
-                }
-                }
-              )
-            }       
+            <Grid columns={4}>
+                
+                    {games.map(game => {
+                        if (this.state.selectedDate === game.date) {
+                        return <Grid.Column><GameCard key={game.id} game={game}/></Grid.Column>
+                        }
+                        }
+                    )
+                    }       
+                </Grid>
             </div>
         </div>
     )

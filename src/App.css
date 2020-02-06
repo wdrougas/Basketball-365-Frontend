@@ -6,6 +6,10 @@
   background-image: url('https://exposure.imgix.net/production/photos/run8ewmob18uc9efy0rtme910fccngp0c9cz/original.jpg?w=1400&fm=pjpg&auto=format')
 }
 
+.Home {
+  background-image: url('https://socohomebrew.com/wp-content/uploads/2016/05/Black-website-background-black-1024x695.jpg')
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -41,7 +45,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: blue;
 }
 
 .App-link {
@@ -55,4 +59,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Card-Image {
+  height: 100px
 }

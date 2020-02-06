@@ -36,7 +36,7 @@ render() {
   
     return (
       <div className="App">
-        <NavBar />
+        <NavBar className="App-header"/>
         <Switch>
           <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
           <Route exact path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
