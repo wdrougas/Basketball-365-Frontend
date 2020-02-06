@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
- import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT, FETCHED_FAVORITES, ADDED_FAVORITE} from './actionType'
+ import {FETCHED_GAMES, FETCHED_PLAYERS, FETCHED_TEAMS, FETCHED_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, SELECTED_DATE, LOGGED_OUT, FETCHED_FAVORITES, ADDED_FAVORITE, DELETE_FAVORITE} from './actionType'
 
  const gamesReducer = (oldState=[], action) => {
      switch(action.type) {
@@ -46,6 +46,9 @@ import {combineReducers} from 'redux'
             return action.payload
         case ADDED_FAVORITE:
             return {...oldState, favorites: [...oldState.favorites, action.payload]}
+        case DELETE_FAVORITE: 
+            const removalIndex = oldState.favorites.findIndex(favorite => favorite.id === action.payload.id)
+            return {...oldState, favorites: [...oldState.favorites.slice(0, removalIndex), ...oldState.favorites.slice(removalIndex + 1)]}
         default:
             return oldState
      }
@@ -71,6 +74,9 @@ import {combineReducers} from 'redux'
              return action.payload
          case ADDED_FAVORITE: 
              return [...oldState, action.payload]
+         case DELETE_FAVORITE:
+             const removalIndex = oldState.findIndex(favorite => favorite.id === action.payload.id)
+             return [...oldState.slice(0, removalIndex), ...oldState.slice(removalIndex + 1)]
          default:
              return oldState
      }

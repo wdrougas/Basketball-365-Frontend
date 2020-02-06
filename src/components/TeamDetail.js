@@ -4,11 +4,13 @@ import {withRouter, Link} from 'react-router-dom'
 import {Image, Container, List, Modal, Segment, Grid, Comment, Button} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
-import {addedFavorite} from '../redux/actionCreators'
+import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
 // import state from 'sweetalert/typings/modules/state'
 
 
+const favoritesData = 'http://localhost:3000/favorites'
 class TeamDetail extends React.Component {
+
 
     createFavorite = (player) => { 
         let playerId = player.id      
@@ -23,7 +25,7 @@ class TeamDetail extends React.Component {
                 player_id: playerId
             })
         }
-        fetch('http://localhost:3000/favorites', configOptions)
+        fetch(favoritesData, configOptions)
         .then(res => res.json())
       .then(data => {
           if (data.message === "Player added to favorites!") {
@@ -39,6 +41,11 @@ class TeamDetail extends React.Component {
 
 
     removeFavorite = (favorite) => {
+        fetch(favoritesData + `/${favorite.id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(favorite => this.props.deleteFavorite(favorite))
     }
 
     render() {
@@ -118,6 +125,9 @@ const mapDispatchToProps = dispatch => {
     return {
         addedFavorite: (favorite) => {
             dispatch(addedFavorite(favorite))
+        },
+        deleteFavorite: (favorite) => {
+            dispatch(deleteFavorite(favorite))
         }
     }
 }

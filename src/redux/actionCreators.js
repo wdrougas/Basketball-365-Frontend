@@ -1,4 +1,4 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES, DELETE_FAVORITE} from './actionType'
 
 //import thunk
 const gamesData = 'http://localhost:3000/games'
@@ -49,8 +49,12 @@ function fetchedFavorites(favoritesArray) {
     return {type: FETCHED_FAVORITES, payload: favoritesArray}
 }
 
-function addedFavorite(favorite) {
-    return {type: ADDED_FAVORITE, payload: favorite}
+function addedFavorite(favoriteObject) {
+    return {type: ADDED_FAVORITE, payload: favoriteObject}
+}
+
+function deleteFavorite(favoriteObject) {
+    return {type: DELETE_FAVORITE, payload: favoriteObject}
 }
 
 
@@ -139,4 +143,4 @@ function fetchingFavorites() {
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite}
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite, deleteFavorite}
