@@ -48,7 +48,11 @@ class TeamDetail extends React.Component {
         .then(favorite => this.props.deleteFavorite(favorite))
     }
 
+    
     render() {
+    var games = this.props.team.home_games.concat(this.props.team.visiting_games)
+    var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
+    console.log(games)
         return  !this.props.team ? <div className="ui active transition visible dimmer">
         <div className="content"><div className="ui text loader">Loading</div></div>
       </div> : (
@@ -58,7 +62,7 @@ class TeamDetail extends React.Component {
                 <br />
                 <h1>{this.props.team.name}</h1>
                 <Segment>
-                <Grid columns ={3} relaxed='very'>
+                <Grid columns ={2} relaxed='very'>
                 <Grid.Column>
                 <h3>Roster</h3>
                 {this.props.team.players.map(player => {
@@ -81,10 +85,13 @@ class TeamDetail extends React.Component {
                     </Modal>               
                     </List.Item>
                     </List>})}
+                    <br/>
+                    <br/>
+                    <CommentContainer team={this.props.team}/>
                 </Grid.Column>
                 <Grid.Column>
-                    <h3>Home Games</h3>
-                    {this.props.team.home_games.map(game => {
+                    <h3>Schedule</h3>
+                    {sorted.map(game => {
                         return <List key={game.id} game={game}>
                             <List.Item>
                                 <Image avatar src={game.visiting_team_logo} />
@@ -95,25 +102,12 @@ class TeamDetail extends React.Component {
                         </List>
                     })}
                 </Grid.Column>
-                <Grid.Column>
-                    <h3>Away Games</h3>
-                    {this.props.team.visiting_games.map(game => {
-                        return <List key={game.id} game={game}>
-                            <List.Item>
-                                <Image avatar src={game.visiting_team_logo} />
-                                <List.Content>
-                    <List.Header as='a'>{game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} <Link to={`/teams/${game.home_team_id}`}>{game.home_team_name}</Link> </List.Header>
-                                </List.Content>
-                            </List.Item>
-                        </List>
-                    })}
-                </Grid.Column>
                 </Grid>
-                <Grid centered columns={2}>
+                {/* <Grid centered columns={2}>
                     <Grid.Column>
                         <CommentContainer team={this.props.team}/>
                     </Grid.Column>
-                </Grid>
+                </Grid> */}
                 </Segment>
             </div>
             )
