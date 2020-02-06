@@ -2,7 +2,7 @@ import React from 'react'
 import {Form, Button, Grid, Header, Segment} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import swal from 'sweetalert'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 
 const usersData = 'http://localhost:3000/users'
 class Signupform extends React.Component {
@@ -30,10 +30,10 @@ handleSubmit = e => {
 
   }
   fetch(usersData, configOptions)
-  .then(res => {
+  .then(res =>  {
     if (res.ok) {
       swal("Done", "Profile created!", 'success')
-      window.location = 'http://localhost:3001/login'
+      this.props.history.push('/login')
     } else {
       swal('Sign up failed', 'Please try again', 'error')
     }
@@ -42,7 +42,6 @@ handleSubmit = e => {
 
   
   render() {
-    console.log(this.props.teams)
     return (
     <div className="Login"> 
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' >
@@ -77,4 +76,4 @@ const mapStateToProps = state => {
       teams: state.teams
     }
 }
-export default connect(mapStateToProps)(Signupform)
+export default withRouter(connect(mapStateToProps)(Signupform))
