@@ -21,7 +21,7 @@ class TeamDetail extends React.Component {
         this.handleClose = this.handleClose.bind(this)
         this.state = {
             isModalOpen: false,
-            game: {}
+            game: null
         }
     }
 
@@ -37,6 +37,7 @@ fetchGameData(game) {
 }
 
 handleClose() {
+    debugger
     this.setState({
         isModalOpen: false
     })
@@ -160,9 +161,16 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
                 })}
             </Grid.Column>
             </Grid>
+            {this.state.game ?  
             <Modal open={this.state.isModalOpen} onClose={this.handleClose}>
-
-            </Modal>
+            <Modal.Header>
+                <Image avatar src={this.state.game.hTeam.logo}/>
+                {this.state.game.hTeam.fullName}
+                vs.
+                {this.state.game.vTeam.fullName}
+                <Image avatar src={this.state.game.vTeam.logo}/>
+            </Modal.Header>
+            </Modal> : null}
             </Segment>
         </div>
         )
