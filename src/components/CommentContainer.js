@@ -11,7 +11,6 @@ class CommentContainer extends React.Component {
     }
 
      addComment = (e) => {
-        console.log('adding comment')
         let configOptions = {
             method: "POST",
             headers: {
@@ -27,7 +26,7 @@ class CommentContainer extends React.Component {
         fetch('http://localhost:3000/comments', configOptions)
         .then(res => res.json())
         .then(comment => this.props.addedComment(comment))
-        .catch(error => alert(error.message))
+        .catch(error => alert("Please add comment"))
         var form = document.getElementById("comment_form")
         form.reset()
 
@@ -47,7 +46,7 @@ class CommentContainer extends React.Component {
           </Comment.Group>
           {this.props.user ? 
           <Form id="comment_form"reply>
-         <Form.TextArea id='comment_box' required/>
+         <Form.TextArea id='comment_box' />
           <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/>
           </Form> : null }
           </div>

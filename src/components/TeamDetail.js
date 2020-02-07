@@ -15,6 +15,8 @@ const headers = {
     "X-RapidAPI-Key": process.env.REACT_APP_API_KEY
   }
 
+
+
 class TeamDetail extends React.Component {
     constructor() {
         super()
@@ -43,37 +45,6 @@ handleClose() {
     })
 }
 
-gameModal(game) {
-
-    return (
-        //game.api.game[0].vTeam.fullName visiting team name
-        //game.api.game[0].hTeam.fullName home team name
-        //game.api.game[0].vTeam.score.points visiting team score
-        //game.api.game[0].hTeam.score.points home team score
-        //game.api.game[0].vTeam.leaders[0].points visiting team leading scorer total points
-        //game.api.game[0].vTeam.leaders[0].name visiting team leading scorer name
-        //game.api.game[0].vTeam.leaders[1].rebounds visiting team leading rebounder total rebounds
-        //game.api.game[0].vTeam.leaders[1].name visiting team leading rebounder name 
-        //game.api.game[0].vTeam.leaders[2].assists visiting team leading assists total assists
-        //game.api.game[0].vTeam.leaders[2].name visiting team leading assists name 
-        //game.api.game[0].hTeam.leaders[0].points home team leading scorer total points
-        //game.api.game[0].hTeam.leaders[0].name home team leading scorer name
-        //game.api.game[0].hTeam.leaders[1].rebounds home team leading rebounder total rebounds
-        //game.api.game[0].hTeam.leaders[1].name home team leading rebounder name 
-        //game.api.game[0].hTeam.leaders[2].assists home team leading assists total assists
-        //game.api.game[0].hTeam.leaders[2].name home team leading assists name 
-        <Modal>
-            <Modal.Header>
-                <Image avatar src={game.api.game[0].hTeam.logo}/>
-                {game.api.game[0].hTeam.fullName}
-                vs.
-                {game.api.game[0].vTeam.fullName}
-                <Image avatar src={game.api.game[0].vTeam.logo}/>
-            </Modal.Header>
-
-        </Modal>
-    )
-}
 
 createFavorite = (player) => { 
     let playerId = player.id      
@@ -110,9 +81,10 @@ createFavorite = (player) => {
 }
 
     
+
 render() {
-var games = this.props.team.home_games.concat(this.props.team.visiting_games)
-var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
+    // const games = this.props.team.home_games.concat(this.props.team.visiting_games)
+    // const sorted = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     return  !this.props.team ? <div className="ui active transition visible dimmer">
     <div className="content"><div className="ui text loader">Loading</div></div>
   </div> : (
@@ -131,8 +103,8 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
                 <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
                     <Modal.Header>
                         <p>{player.first_name} {player.last_name}
-                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.createFavorite(player)}>Add To Favorites</Button> : <Button size='mini' onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}>Remove From Favorites</Button>}
-                        
+                        {this.props.user && this.props.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}>Remove From Favorites</Button>: null}
+                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.createFavorite(player)}>Add To Favorites</Button> : null}
                          </p>
                         </Modal.Header>
                     <Modal.Content>
@@ -150,7 +122,7 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
             </Grid.Column>
             <Grid.Column>
                 <h3>Schedule</h3>
-                {sorted.map(game => {
+                {this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)}).map(game => {
                     return <List key={game.id} game={game}>
                         <List.Item onClick={() => this.fetchGameData(game)}>
                             <List.Content>
@@ -166,19 +138,21 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
             <Modal.Header textAlign='center'>
                 <Image avatar src={this.state.game.vTeam.logo}/>
                 {this.state.game.vTeam.fullName}
-                {this.state.game.vTeam.score.points}
+                {this.state.game.vTeam.score ? this.state.game.vTeam.score.points: null}
                 vs.
-                {this.state.game.hTeam.score.points}
+                {this.state.game.hTeam.score ? this.state.game.hTeam.score.points : null}
                 {this.state.game.hTeam.fullName}
                 <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
             <Modal.Content>
+                {this.state.game.hTeam.leaders[0] ? 
+                <div>
                 <p>Points: {this.state.game.vTeam.leaders[0].name} {this.state.game.vTeam.leaders[0].points} points</p>
                 <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
                 <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
                 <p>Points: {this.state.game.hTeam.leaders[0].name} {this.state.game.hTeam.leaders[0].points} points</p>
                 <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
-                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
+                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p></div> : null}
             </Modal.Content>
             </Modal> : null}
             </Segment>
