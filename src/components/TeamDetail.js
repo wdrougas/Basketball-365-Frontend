@@ -9,8 +9,70 @@ import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
 
 
 const favoritesData = 'http://localhost:3000/favorites'
-class TeamDetail extends React.Component {
 
+const headers = {
+    "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
+    "X-RapidAPI-Key": process.env.REACT_APP_API_KEY
+  }
+
+class TeamDetail extends React.Component {
+    constructor() {
+        super()
+        this.handleClose = this.handleClose.bind(this)
+        this.state = {
+            isModalOpen: false,
+            game: {}
+        }
+    }
+
+fetchGameData(game) {
+    return (
+        fetch(`https://api-nba-v1.p.rapidapi.com/gameDetails/${game.game_id}`, {
+            'method': 'GET',
+            'headers' : headers
+        })
+        .then(res => res.json())
+        .then(game => this.setState({game: game.api.game[0], isModalOpen: true}))
+    )
+}
+
+handleClose() {
+    this.setState({
+        isModalOpen: false
+    })
+}
+
+gameModal(game) {
+
+    return (
+        //game.api.game[0].vTeam.fullName visiting team name
+        //game.api.game[0].hTeam.fullName home team name
+        //game.api.game[0].vTeam.score.points visiting team score
+        //game.api.game[0].hTeam.score.points home team score
+        //game.api.game[0].vTeam.leaders[0].points visiting team leading scorer total points
+        //game.api.game[0].vTeam.leaders[0].name visiting team leading scorer name
+        //game.api.game[0].vTeam.leaders[1].rebounds visiting team leading rebounder total rebounds
+        //game.api.game[0].vTeam.leaders[1].name visiting team leading rebounder name 
+        //game.api.game[0].vTeam.leaders[2].assists visiting team leading assists total assists
+        //game.api.game[0].vTeam.leaders[2].name visiting team leading assists name 
+        //game.api.game[0].hTeam.leaders[0].points home team leading scorer total points
+        //game.api.game[0].hTeam.leaders[0].name home team leading scorer name
+        //game.api.game[0].hTeam.leaders[1].rebounds home team leading rebounder total rebounds
+        //game.api.game[0].hTeam.leaders[1].name home team leading rebounder name 
+        //game.api.game[0].hTeam.leaders[2].assists home team leading assists total assists
+        //game.api.game[0].hTeam.leaders[2].name home team leading assists name 
+        <Modal>
+            <Modal.Header>
+                <Image avatar src={game.api.game[0].hTeam.logo}/>
+                {game.api.game[0].hTeam.fullName}
+                vs.
+                {game.api.game[0].vTeam.fullName}
+                <Image avatar src={game.api.game[0].vTeam.logo}/>
+            </Modal.Header>
+
+        </Modal>
+    )
+}
 
 createFavorite = (player) => { 
     let playerId = player.id      
@@ -50,7 +112,6 @@ createFavorite = (player) => {
 render() {
 var games = this.props.team.home_games.concat(this.props.team.visiting_games)
 var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
-console.log(games)
     return  !this.props.team ? <div className="ui active transition visible dimmer">
     <div className="content"><div className="ui text loader">Loading</div></div>
   </div> : (
@@ -90,21 +151,18 @@ console.log(games)
                 <h3>Schedule</h3>
                 {sorted.map(game => {
                     return <List key={game.id} game={game}>
-                        <List.Item>
-                            <Image avatar src={game.visiting_team_logo} />
+                        <List.Item onClick={() => this.fetchGameData(game)}>
                             <List.Content>
-                <List.Header as='a'><Link to={`/teams/${game.visiting_team_id}`}>{game.visiting_team_name}</Link> {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
+                            <List.Header as='a'> {game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
                            </List.Content>
                         </List.Item>
                     </List>
                 })}
             </Grid.Column>
             </Grid>
-            {/* <Grid centered columns={2}>
-                <Grid.Column>
-                    <CommentContainer team={this.props.team}/>
-                </Grid.Column>
-            </Grid> */}
+            <Modal open={this.state.isModalOpen} onClose={this.handleClose}>
+
+            </Modal>
             </Segment>
         </div>
         )

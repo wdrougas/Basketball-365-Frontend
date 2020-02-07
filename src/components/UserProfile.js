@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, Header, List, Modal, Button} from 'semantic-ui-react'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
+import {Link} from 'react-router-dom'
 
 
 
@@ -54,7 +55,7 @@ removeFavorite = (favorite) => {
                 <Grid.Row>
                     <Grid.Column>
                         <Header>Team</Header>
-                        <p>{this.props.user.team.name}</p>
+                        <Link to={`/teams/${this.props.user.team.id}`}><h2>{this.props.user.team.name}</h2></Link>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

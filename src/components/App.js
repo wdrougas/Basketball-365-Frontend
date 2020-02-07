@@ -17,8 +17,8 @@ import UserProfile from './UserProfile'
 
 class App extends React.Component {
 
-
-componentDidMount() {
+  
+  componentDidMount() {
   this.props.fetchingGames()
   this.props.fetchingPlayers()
   this.props.fetchingTeams()
