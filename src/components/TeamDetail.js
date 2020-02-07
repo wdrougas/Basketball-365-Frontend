@@ -173,7 +173,12 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
                 <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
             <Modal.Content>
-
+                <p>Points: {this.state.game.vTeam.leaders[0].name} {this.state.game.vTeam.leaders[0].points} points</p>
+                <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
+                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
+                <p>Points: {this.state.game.hTeam.leaders[0].name} {this.state.game.hTeam.leaders[0].points} points</p>
+                <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
+                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
             </Modal.Content>
             </Modal> : null}
             </Segment>
@@ -181,6 +186,23 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
         )
     }
 }
+
+      //game.api.game[0].vTeam.fullName visiting team name
+        //game.api.game[0].hTeam.fullName home team name
+        //game.api.game[0].vTeam.score.points visiting team score
+        //game.api.game[0].hTeam.score.points home team score
+        //game.api.game[0].vTeam.leaders[0].points visiting team leading scorer total points
+        //game.api.game[0].vTeam.leaders[0].name visiting team leading scorer name
+        //game.api.game[0].vTeam.leaders[1].rebounds visiting team leading rebounder total rebounds
+        //game.api.game[0].vTeam.leaders[1].name visiting team leading rebounder name 
+        //game.api.game[0].vTeam.leaders[2].assists visiting team leading assists total assists
+        //game.api.game[0].vTeam.leaders[2].name visiting team leading assists name 
+        //game.api.game[0].hTeam.leaders[0].points home team leading scorer total points
+        //game.api.game[0].hTeam.leaders[0].name home team leading scorer name
+        //game.api.game[0].hTeam.leaders[1].rebounds home team leading rebounder total rebounds
+        //game.api.game[0].hTeam.leaders[1].name home team leading rebounder name 
+        //game.api.game[0].hTeam.leaders[2].assists home team leading assists total assists
+        //game.api.game[0].hTeam.leaders[2].name home team leading assists name 
 
 
 const mapDispatchToProps = dispatch => {
