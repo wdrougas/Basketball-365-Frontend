@@ -39,7 +39,6 @@ fetchGameData(game) {
 }
 
 handleClose() {
-    debugger
     this.setState({
         isModalOpen: false
     })
