@@ -54,6 +54,7 @@ removeFavorite = (favorite) => {
                 <Grid.Row>
                     <Grid.Column>
                         <Header>Team</Header>
+                        <p>{this.props.user.team.name}</p>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
