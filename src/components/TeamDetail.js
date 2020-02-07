@@ -135,7 +135,7 @@ render() {
             </Grid>
             {this.state.game ?  
             <Modal open={this.state.isModalOpen} onClose={this.handleClose}>
-            <Modal.Header textAlign='center'>
+            <Modal.Header >
                 <Image avatar src={this.state.game.vTeam.logo}/>
                 {this.state.game.vTeam.fullName}
                 {this.state.game.vTeam.score ? this.state.game.vTeam.score.points: null}
