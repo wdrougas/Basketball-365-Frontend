@@ -163,13 +163,18 @@ var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)
             </Grid>
             {this.state.game ?  
             <Modal open={this.state.isModalOpen} onClose={this.handleClose}>
-            <Modal.Header>
-                <Image avatar src={this.state.game.hTeam.logo}/>
-                {this.state.game.hTeam.fullName}
-                vs.
-                {this.state.game.vTeam.fullName}
+            <Modal.Header textAlign='center'>
                 <Image avatar src={this.state.game.vTeam.logo}/>
+                {this.state.game.vTeam.fullName}
+                {this.state.game.vTeam.score.points}
+                vs.
+                {this.state.game.hTeam.score.points}
+                {this.state.game.hTeam.fullName}
+                <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
+            <Modal.Content>
+
+            </Modal.Content>
             </Modal> : null}
             </Segment>
         </div>
