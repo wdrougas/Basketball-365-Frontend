@@ -148,8 +148,8 @@ render() {
                 {this.state.game.hTeam.leaders[0] ? 
                 <div>
                 <p>Points: {this.state.game.vTeam.leaders[0].name} {this.state.game.vTeam.leaders[0].points} points</p>
-                <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
-                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
+                <p>Rebounds: {this.state.game.vTeam.leaders[1].name} {this.state.game.vTeam.leaders[1].rebounds} rebounds</p>
+                <p>Assists: {this.state.game.vTeam.leaders[2].name} {this.state.game.vTeam.leaders[2].assists} assists</p>
                 <p>Points: {this.state.game.hTeam.leaders[0].name} {this.state.game.hTeam.leaders[0].points} points</p>
                 <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
                 <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p></div> : null}

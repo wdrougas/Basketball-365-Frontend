@@ -5,19 +5,21 @@ import {Segment, Grid, List, Image} from 'semantic-ui-react'
 
 class Standings extends React.Component {
   render() {
+    let eastStandings = this.props.standings.filter(standing => standing.confernece === 'east')
+    let westStandings = this.props.standings.filter(standing => standing.conference === 'west')
     return (
         <div>
           <br/>
           <br/>
           <br/>
           <h2>Standings</h2>
-          <Segment>
+          
             <Grid columns={2} relaxed='very'>
               <Grid.Column>
-                <h3>East Standings</h3>
+              <h3>East Standings</h3>
                 {this.props.standings.map(standing => {
                   if (standing.conference === 'east') {
-                  return <List key={standing.id}>
+                  return <List key={standing.id} >
                     <List.Item>
                       <Image avatar src={standing.team_logo} />
                       <List.Content>
@@ -33,7 +35,7 @@ class Standings extends React.Component {
                 <h3>West Standings</h3>
                 {this.props.standings.map(standing => {
                   if (standing.conference === 'west') {
-                  return <List key={standing.id}>
+                  return <List key={standing.id} >
                     <List.Item>
                       <Image avatar src={standing.team_logo} />
                       <List.Content>
@@ -46,7 +48,7 @@ class Standings extends React.Component {
                 }})}
               </Grid.Column>
             </Grid>
-          </Segment>
+         
         </div>
     )
   }
@@ -55,7 +57,7 @@ class Standings extends React.Component {
 const mapStateToProps = state => {
   return {
       standings: state.standings.sort(function(a,b) {
-        return b.win - a.win
+        return a.loss - b.loss
       })
   }
 }

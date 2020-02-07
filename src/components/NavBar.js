@@ -63,7 +63,7 @@ fun() {
             </Grid.Column>}
             {this.props.user ? 
             <Grid.Column floated='right'>
-                <Dropdown text={this.props.user.first_name}>
+                <Dropdown id="profileDropDown" text={this.props.user.first_name}>
                     <Dropdown.Menu>
                        <Dropdown.Item text='Profile' onClick={this.fun.bind(this)}/>
                         <Dropdown.Item text='Logout' onClick={this.props.loggedOut}/>

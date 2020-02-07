@@ -1,5 +1,13 @@
+#profileDropDown{
+  padding-right:30px;
+  font-size: 20px;
+  top:13px;
+}
+
 .App {
-  text-align: center
+  text-align: center;
+  /* background-image: url('https://cdn.hipwallpaper.com/i/70/57/JOenwk.png');
+  box-shadow: inset 0 0 0 1000px rgba(36, 36, 36, 0.42); */
 }
 
 .Login {

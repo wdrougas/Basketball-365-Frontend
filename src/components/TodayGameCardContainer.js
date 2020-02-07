@@ -39,6 +39,20 @@ const TodayGameCardContainer = props => {
                         <TodayGameCard key={nextGame.id} game={nextGame}/>
                     </Grid.Column>
                 </Grid.Row>
+                    <div>
+                        <h1>Watchlist</h1>
+                    </div>
+                <Grid.Row>
+                    <Grid.Column>
+                        <p>Game</p> 
+                    </Grid.Column>
+                    <Grid.Column>
+                        <p>Game</p>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <p>Game</p>
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
         </div>
         </div>
