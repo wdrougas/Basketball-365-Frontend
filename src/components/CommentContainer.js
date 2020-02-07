@@ -47,7 +47,7 @@ class CommentContainer extends React.Component {
           </Comment.Group>
           {this.props.user ? 
           <Form id="comment_form"reply>
-         <Form.TextArea id='comment_box' />
+         <Form.TextArea id='comment_box' required/>
           <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={this.addComment}/>
           </Form> : null }
           </div>
