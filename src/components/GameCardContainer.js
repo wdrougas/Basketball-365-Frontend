@@ -3,7 +3,7 @@ import GameCard from './GameCard'
 import {connect} from 'react-redux'
 import DateFnsUtils from '@date-io/date-fns'
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Header} from 'semantic-ui-react'
 
 class GameCardContainer extends React.Component {
     constructor(){
@@ -25,6 +25,9 @@ changeDate = date => {
     
 render() {
  let games = [].concat.apply([], this.props.games)
+ let gameDates = games.map(game => game.date)
+ let todaysGames = games.filter(game => game.date === this.state.selectedDate)
+ console.log(todaysGames.length)
     return (
         <div>
             <br/>
@@ -39,13 +42,10 @@ render() {
             <br />
             <div className='ui grid fluid container'>
             <Grid columns={4}>
-                
-                    {games.map(game => {
-                        if (this.state.selectedDate === game.date) {
-                        return <Grid.Column><GameCard key={game.id} game={game}/></Grid.Column>
-                        }
-                        }
-                    )
+                    {todaysGames.length !== 0 ? todaysGames.map(game => {
+                        return <Grid.Column><GameCard key={game.id} game={game}/></Grid.Column> 
+                        } 
+                    ) : <Header>No games scheduled</Header>
                     }       
                 </Grid>
             </div>
