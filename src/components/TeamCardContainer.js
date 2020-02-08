@@ -2,7 +2,7 @@ import React from 'react'
 import TeamCard from './TeamCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Segment} from 'semantic-ui-react'
+import {Segment, Grid} from 'semantic-ui-react'
 
 
 const TeamCardContainer = props => {
@@ -11,10 +11,12 @@ const TeamCardContainer = props => {
                 
                 <h1>Teams</h1>
                 <br/>
-                    <Segment.Group>
+                    <div className= 'ui grid fluid container'>
+                    <Grid columns={6}>
                     {props.teams.map(team => {
-                    return <TeamCard key={team.id} team={team}/>  })}
-                    </Segment.Group>
+                    return <Grid.Column><TeamCard key={team.id} team={team}/> </Grid.Column> })}
+                    </Grid>
+                    </div>
                 </div>
             )
         }

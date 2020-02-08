@@ -18,7 +18,7 @@ const TodayGameCardContainer = props => {
     var nextGame = remainingGames[1]
 
 
-headlines = () => {
+const headlines = () => {
 fetch('https://newsapi.org/v2/everything?' +
     'q=NBA&' +
     'from=2020-02-08&' +

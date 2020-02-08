@@ -1,17 +1,19 @@
 import React from 'react'
-import {Image, Segment} from 'semantic-ui-react'
+import {Image, Segment, Grid} from 'semantic-ui-react'
 import {Link, withRouter} from 'react-router-dom'
 
 
 
 const TeamCard = props => {
     return (
-    <div className='row'>
-        <Segment>
-        <Image avatar src={props.team.logo} />
-        <Link to={`/teams/${props.team.id}`}><h2>{props.team.name}</h2></Link>
-        </Segment>
-    </div> 
+        <div className='ui grid fluid container'>
+            <Grid.Column>
+                <Segment circular className ='ui small image'>
+                <Link to={`/teams/${props.team.id}`}><Image src={props.team.logo} /></Link>
+                {/* <h2>{props.team.name}</h2> */}
+                </Segment>
+            </Grid.Column>
+        </div>
         )
 }
 
