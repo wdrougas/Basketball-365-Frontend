@@ -16,6 +16,16 @@ const TodayGameCardContainer = props => {
     var lastGame = playedGames.slice(-1)[0]
     var currentGame = remainingGames[0]
     var nextGame = remainingGames[1]
+
+
+headlines = () => {
+fetch('https://newsapi.org/v2/everything?' +
+    'q=NBA&' +
+    'from=2020-02-08&' +
+    'sortBy=popularity&' +
+    'apiKey=process.env.REACT_APP_NEWS_API_KEY').then(res => res.json())
+    .then(data => console.log(data))
+}
     return (
         <div >
         <br/>
@@ -25,6 +35,17 @@ const TodayGameCardContainer = props => {
         <br/>
         <div className='ui grid fluid container'>
             <Grid columns={3}>
+                <Grid.Row>
+                    <Grid.Column>
+                        
+                    </Grid.Column>
+                    <Grid.Column>
+
+                    </Grid.Column>
+                    <Grid.Column>
+
+                    </Grid.Column>
+                </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
                         <h3>Previous Game</h3>
@@ -42,17 +63,6 @@ const TodayGameCardContainer = props => {
                     <div>
                         <h1>Watchlist</h1>
                     </div>
-                <Grid.Row>
-                    <Grid.Column>
-                        <p>Game</p> 
-                    </Grid.Column>
-                    <Grid.Column>
-                        <p>Game</p>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <p>Game</p>
-                    </Grid.Column>
-                </Grid.Row>
             </Grid>
         </div>
         </div>
