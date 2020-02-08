@@ -1,12 +1,18 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES, DELETE_FAVORITE} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES, DELETE_FAVORITE, FETCHED_NEWS, LOADING_NEWS} from './actionType'
 
 //import thunk
+const NEWS_KEY = process.env.REACT_APP_NEWS_API_KEY
 const gamesData = 'http://localhost:3000/games'
 const playersData = 'http://localhost:3000/players'
 const teamsData = 'http://localhost:3000/teams'
 const standingsData = 'http://localhost:3000/standings'
 const commentsData = 'http://localhost:3000/comments'
 const favoritesData = 'http://localhost:3000/favorites'
+const newsData = ('https://newsapi.org/v2/everything?' +
+'q=NBA&' +
+'from=2020-02-08&' +
+'sortBy=popularity&' +
+`apiKey=${NEWS_KEY}`)
 
 function fetchedGames(gamesArray) {
     return {type: FETCHED_GAMES, payload: gamesArray}
@@ -57,6 +63,10 @@ function deleteFavorite(favoriteObject) {
     return {type: DELETE_FAVORITE, payload: favoriteObject}
 }
 
+function fetchedNews(newsArray) {
+    return {type: FETCHED_NEWS, payload: newsArray}
+}
+
 
 
 function loadingGames(){
@@ -81,6 +91,10 @@ function loadingComments(){
 
 function loadingFavorites(){
     return {type: LOADING_FAVORITES}
+}
+
+function loadingNews() {
+    return {type: LOADING_NEWS}
 }
 
 
@@ -140,7 +154,16 @@ function fetchingFavorites() {
     }
 }
 
+function fetchingNews() {
+    return (dispatch) => {
+    dispatch(loadingNews())
+    fetch(newsData)
+    .then(res => res.json())
+    .then(newsArray => {dispatch(fetchedNews(newsArray))})
+    }
+}
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite, deleteFavorite}
+
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite, deleteFavorite, fetchingNews}

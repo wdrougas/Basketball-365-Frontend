@@ -9,9 +9,10 @@ import Loginform from './Loginform'
 import Signupform from './Signupform'
 import Standings from './Standings'
 import {connect} from 'react-redux'
-import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments, fetchingFavorites} from '../redux/actionCreators'
+import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchingComments, fetchingFavorites, fetchingNews} from '../redux/actionCreators'
 import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
+import NewsDetail from './NewsDetail'
 
 
 
@@ -25,6 +26,7 @@ class App extends React.Component {
   this.props.fetchingStandings()
   this.props.fetchingComments()
   this.props.fetchingFavorites()
+  this.props.fetchingNews()
 }
 
 
@@ -33,7 +35,6 @@ class App extends React.Component {
 
 
 render() {
-  
     return (
       <div className="App">
         <NavBar className="App-header"/>
@@ -46,6 +47,7 @@ render() {
           <Route exact path='/standings' component={Standings} />
           <Route exact path='/signup' component={Signupform} />
           <Route exact path='/:userId' render={() => this.props.user ? <UserProfile />: <Redirect to='/login' />} />
+          <Route exact path='/news/:story' component={NewsDetail} />
         </Switch>
       </div>
     );
@@ -59,7 +61,8 @@ const mapStateToProps = state => {
     teams: state.teams,
     user: state.currentUser,
     comments: state.comments,
-    date: state.date
+    date: state.date,
+    news: state.news
   }
 }
 
@@ -69,7 +72,8 @@ const mapDispatchToProps = dispatch => ({
     fetchingPlayers: () => {dispatch(fetchingPlayers())},
     fetchingStandings: () => {dispatch(fetchingStandings())},
     fetchingComments: () => {dispatch(fetchingComments())},
-    fetchingFavorites: () => {dispatch(fetchingFavorites())}
+    fetchingFavorites: () => {dispatch(fetchingFavorites())},
+    fetchingNews: () => {dispatch(fetchingNews())}
   }
 )
 
