@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, List, Modal, Segment, Grid,Button} from 'semantic-ui-react'
+import {Image, List, Modal, Segment, Grid,Button, Column} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
@@ -133,25 +133,32 @@ render() {
             </Grid.Column>
             </Grid>
             {this.state.game ?  
-            <Modal open={this.state.isModalOpen} onClose={this.handleClose}>
+            <Modal open={this.state.isModalOpen} onClose={this.handleClose} size='small'>
             <Modal.Header >
-                <Image avatar src={this.state.game.vTeam.logo}/>
-                {this.state.game.vTeam.fullName}
-                {this.state.game.vTeam.score ? this.state.game.vTeam.score.points: null}
-                vs.
-                {this.state.game.hTeam.score ? this.state.game.hTeam.score.points : null}
-                {this.state.game.hTeam.fullName}
-                <Image avatar src={this.state.game.hTeam.logo}/>
+                <Image avatar src={this.state.game.vTeam.logo}/>  {this.state.game.vTeam.fullName}    {this.state.game.vTeam.score ?  this.state.game.vTeam.score.points: null}   |   {this.state.game.hTeam.score ?  this.state.game.hTeam.score.points : null}      {this.state.game.hTeam.fullName}  <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
             <Modal.Content>
+                
                 {this.state.game.hTeam.leaders[0] ? 
-                <div>
-                <p>Points: {this.state.game.vTeam.leaders[0].name} {this.state.game.vTeam.leaders[0].points} points</p>
-                <p>Rebounds: {this.state.game.vTeam.leaders[1].name} {this.state.game.vTeam.leaders[1].rebounds} rebounds</p>
-                <p>Assists: {this.state.game.vTeam.leaders[2].name} {this.state.game.vTeam.leaders[2].assists} assists</p>
-                <p>Points: {this.state.game.hTeam.leaders[0].name} {this.state.game.hTeam.leaders[0].points} points</p>
-                <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
-                <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p></div> : null}
+                <Grid columns={2} widths='equal' relaxed ='very'>
+                
+                    <Grid.Column>
+                        <Segment>
+                            <p>Points: {this.state.game.vTeam.leaders[0].name} {this.state.game.vTeam.leaders[0].points} points</p>
+                            <p>Rebounds: {this.state.game.vTeam.leaders[1].name} {this.state.game.vTeam.leaders[1].rebounds} rebounds</p>
+                            <p>Assists: {this.state.game.vTeam.leaders[2].name} {this.state.game.vTeam.leaders[2].assists} assists</p>
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Segment>
+
+                            <p>Points: {this.state.game.hTeam.leaders[0].name} {this.state.game.hTeam.leaders[0].points} points</p>
+                            <p>Rebounds: {this.state.game.hTeam.leaders[1].name} {this.state.game.hTeam.leaders[1].rebounds} rebounds</p>
+                            <p>Assists: {this.state.game.hTeam.leaders[2].name} {this.state.game.hTeam.leaders[2].assists} assists</p>
+                        </Segment>
+                    </Grid.Column>
+                </Grid>
+                 : null}
             </Modal.Content>
             </Modal> : null}
             </Segment>

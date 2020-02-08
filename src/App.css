@@ -72,3 +72,10 @@
 .Card-Image {
   height: 100px
 }
+
+
+
+
+.ui.modal>.header:not(.ui) {
+  text-align: center
+}
