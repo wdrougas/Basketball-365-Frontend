@@ -9,7 +9,6 @@ import {Grid} from 'semantic-ui-react'
 
 
 const TodayGameCardContainer = props => {
-    debugger
     var games = props.user.team.home_games.concat(props.user.team.visiting_games)
     var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     const removalIndex = sorted.findIndex(game => game.arena === "")

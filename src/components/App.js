@@ -13,6 +13,7 @@ import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchi
 import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
 import NewsDetail from './NewsDetail'
+import {Segment} from 'semantic-ui-react'
 
 
 
@@ -49,6 +50,9 @@ render() {
           <Route exact path='/:userId' render={() => this.props.user ? <UserProfile />: <Redirect to='/login' />} />
           <Route exact path='/news/:story' component={NewsDetail} />
         </Switch>
+        <Segment inverted>
+          Inverted Content
+        </Segment>
       </div>
     );
   }
