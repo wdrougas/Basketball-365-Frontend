@@ -91,14 +91,15 @@ render() {
             <br/>
             <br/>
             <br />
-            <h1>{this.props.team.name}</h1>
+            <h1>{this.props.team.name} <Image src={this.props.team.logo} avatar /> </h1>
             
             <Grid columns ={2} relaxed='very'>
-            <Grid.Column>
-            <Segment>
+            <Grid.Column id="Team-Column">
+            <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <h3>Roster</h3>
+            <List  >
             {this.props.team.players.map(player => {
-            return <List key={player.id} player={player} >
+            return <Segment vertical >
             <List.Item >
                 <Modal size='mini' trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
                     <Modal.Header>
@@ -115,7 +116,9 @@ render() {
                     </Modal.Content>
                </Modal>               
                 </List.Item>
-                </List>})}
+                </Segment>
+                })}
+                </List>
                 <br/>
                 <br/>
                 </Segment>
@@ -123,18 +126,20 @@ render() {
                 <CommentContainer team={this.props.team}/>
                 </Segment>
             </Grid.Column>
-            <Grid.Column>
-                <Segment>
+            <Grid.Column id="Team-Column">
+            <Segment style={{overflow: 'auto', maxHeight: 800 }} >
                 <h3>Schedule</h3>
+                <List >
                 {this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)}).map(game => {
-                    return <List key={game.id} game={game}>
-                        <List.Item onClick={() => this.fetchGameData(game)}>
+                       return <Segment vertical >
+                       <List.Item onClick={() => this.fetchGameData(game)}>
                             <List.Content>
                             <List.Header as='a'> {game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
                            </List.Content>
                         </List.Item>
-                    </List>
+                        </Segment>
                 })}
+                </List>
                 </Segment>
             </Grid.Column>
             </Grid>

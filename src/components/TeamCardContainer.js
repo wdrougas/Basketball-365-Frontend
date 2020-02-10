@@ -8,7 +8,9 @@ import {Segment, Grid} from 'semantic-ui-react'
 const TeamCardContainer = props => {
             return (
                 <div>
-                
+                <br />
+                <br />
+                <br/>
                 <h1>Teams</h1>
                 <br/>
                     <div className= 'ui grid fluid container'>
