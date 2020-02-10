@@ -6,13 +6,13 @@ import NewsDetail from './NewsDetail'
 
 const NewsCard = props => {
     return (
-        <Card>
+        <Card className='News-Card'>
             <Image src={props.story.urlToImage} />
-        <Popup position ='bottom center' content={props.story.description} trigger={<Card.Content>
+        <Card.Content>
             <Card.Header>
-                {props.story.title}
+               <a href={props.story.url} target="_blank" >{props.story.title} </a>
             </Card.Header>
-        </Card.Content> } />
+        </Card.Content> 
     </Card>
     )
 }

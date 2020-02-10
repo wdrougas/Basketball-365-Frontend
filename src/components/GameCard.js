@@ -11,14 +11,16 @@ const GameCard = props => {
             <Image src={props.game.home_team_logo} size='small' />
         </Image.Group>
         <Card.Content>
-        <Card.Header>{props.game.visiting_team_name} vs. {props.game.home_team_name}</Card.Header>
+        <Card.Header><Link to={`/teams/${props.game.home_team_id}`}>{props.game.visiting_team_name}</Link> vs. <Link to={`/teams/${props.game.visiting_team_id}`}>{props.game.home_team_name}</Link></Card.Header>
         <Card.Description>
-            {props.game.arena} - {props.game.city}
+            {props.game.arena !== '' && props.game.city !== '' ? 
+            <div>
+            {props.game.arena} - {props.game.city} 
             <br/>
             <br/>
-            <Link to={`/teams/${props.game.visiting_team_id}`}>{props.game.visiting_team_name} - {props.game.visiting_team_score}</Link>
+            {props.game.visiting_team_name} - {props.game.visiting_team_score}
             <br/>
-            <Link to={`teams/${props.game.home_team_id}`}>{props.game.home_team_name} - {props.game.home_team_score}</Link>
+            {props.game.home_team_name} - {props.game.home_team_score}</div>: null}
         </Card.Description>
         </Card.Content> 
     </Card>

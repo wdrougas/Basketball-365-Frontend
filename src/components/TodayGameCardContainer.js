@@ -4,7 +4,7 @@ import GameCard from './GameCard'
 import NewsCard from './NewsCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Segment} from 'semantic-ui-react'
 
 
 
@@ -21,6 +21,8 @@ const TodayGameCardContainer = props => {
     var leadStory = props.news.articles[0]
     var secondStory = props.news.articles[1]
     var thirdStory = props.news.articles[2]
+    var fourthStory = props.news.articles[3]
+    var fifthStory = props.news.articles[4]
 
     return (
         <div >
@@ -28,9 +30,8 @@ const TodayGameCardContainer = props => {
         <br/>
         <br/>
         <h1>Today's Headlines</h1>
-        <br/>
         <div className='ui grid fluid container'>
-            <Grid columns={3}>
+            <Grid columns={5}>
                 <Grid.Row>
                     <Grid.Column>
                         <NewsCard key={leadStory.title} story={leadStory}/>
@@ -41,11 +42,18 @@ const TodayGameCardContainer = props => {
                     <Grid.Column>
                         <NewsCard key={thirdStory.title} story={thirdStory} />
                     </Grid.Column>
+                    <Grid.Column>
+                        <NewsCard key={fourthStory.title} story={fourthStory} />
+                    </Grid.Column>
+                    <Grid.Column>
+                        <NewsCard key={fifthStory.title} story={fifthStory} />
+                    </Grid.Column>
                 </Grid.Row>
                 <div>
-                    <h1>{props.user.team.name}</h1>
+                    <h1>{props.user.team.name} </h1>
                 </div>
                 <Grid.Row>
+                    <Grid.Column></Grid.Column>
                     <Grid.Column>
                         <h3>Previous Game</h3>
                         <GameCard key={lastGame.id} game={lastGame}/>
@@ -58,6 +66,7 @@ const TodayGameCardContainer = props => {
                         <h3>Following Game</h3>
                         <TodayGameCard key={nextGame.id} game={nextGame}/>
                     </Grid.Column>
+                    <Grid.Column></Grid.Column>
                 </Grid.Row>
             </Grid>
         </div>

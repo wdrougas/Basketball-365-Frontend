@@ -14,6 +14,7 @@ import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
 import NewsDetail from './NewsDetail'
 import {Segment, Image} from 'semantic-ui-react'
+import Particles from 'react-particles-js'
 
 
 
@@ -38,6 +39,7 @@ class App extends React.Component {
 render() {
     return (
       <div className="App">
+        {/* <Particles /> */}
         <NavBar className="App-header"/>
         <Switch>
           <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>

@@ -11,12 +11,12 @@
 }
 
 .Login {
-  background-image: url('https://exposure.imgix.net/production/photos/run8ewmob18uc9efy0rtme910fccngp0c9cz/original.jpg?w=1400&fm=pjpg&auto=format')
+  background-image: url('https://exposure.imgix.net/production/photos/run8ewmob18uc9efy0rtme910fccngp0c9cz/original.jpg?w=1400&fm=pjpg&auto=format');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
-.Home {
-  background-image: url('https://socohomebrew.com/wp-content/uploads/2016/05/Black-website-background-black-1024x695.jpg')
-}
 
 .App-logo {
   height: 40vmin;
@@ -72,6 +72,40 @@
 .Card-Image {
   height: 100px
 }
+
+.News-Card {
+  height: 30px
+}
+
+.Standing-Team {
+  font-size: 26px;
+  text-align: center
+}
+
+body::after {
+  content: "";
+  /* background-image: url('https://www.drapizagallery.com/drapizagallery/wp-content/uploads/2013/05/background-web-grey.jpg'); */
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+#Standing-Column {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+}
+
+#Image {
+  height: 30px
+}
+
 
 
 
