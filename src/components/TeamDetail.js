@@ -92,9 +92,10 @@ render() {
             <br/>
             <br />
             <h1>{this.props.team.name}</h1>
-            <Segment>
+            
             <Grid columns ={2} relaxed='very'>
             <Grid.Column>
+            <Segment>
             <h3>Roster</h3>
             {this.props.team.players.map(player => {
             return <List key={player.id} player={player} >
@@ -117,9 +118,13 @@ render() {
                 </List>})}
                 <br/>
                 <br/>
+                </Segment>
+                <Segment>
                 <CommentContainer team={this.props.team}/>
+                </Segment>
             </Grid.Column>
             <Grid.Column>
+                <Segment>
                 <h3>Schedule</h3>
                 {this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)}).map(game => {
                     return <List key={game.id} game={game}>
@@ -130,6 +135,7 @@ render() {
                         </List.Item>
                     </List>
                 })}
+                </Segment>
             </Grid.Column>
             </Grid>
             {this.state.game ?  
@@ -161,7 +167,7 @@ render() {
                  : null}
             </Modal.Content>
             </Modal> : null}
-            </Segment>
+        
         </div>
         )
     }

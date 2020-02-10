@@ -19,7 +19,9 @@ function fetchedGames(gamesArray) {
 }
 
 function fetchedTeams(teamsArray) {
-    return {type: FETCHED_TEAMS, payload: teamsArray}
+    return {type: FETCHED_TEAMS, payload: teamsArray.sort(function(a,b) {
+        return a.team_id - b.team_id
+    })}
 }
 
 function fetchedPlayers(playersArray) {
