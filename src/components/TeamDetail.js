@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {Image, List, Modal, Segment, Grid,Button, Column} from 'semantic-ui-react'
+import {Image, List, Modal, Segment, Grid,Button, Column, Icon} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
@@ -100,12 +100,12 @@ render() {
             {this.props.team.players.map(player => {
             return <List key={player.id} player={player} >
             <List.Item >
-                <Modal trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
+                <Modal size='mini' trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
                     <Modal.Header>
-                        <p>{player.first_name} {player.last_name}
-                        {this.props.user && this.props.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}>Remove From Favorites</Button>: null}
-                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' onClick={() => this.createFavorite(player)}>Add To Favorites</Button> : null}
-                         </p>
+                        {player.first_name} {player.last_name}  
+                        {this.props.user && this.props.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='remove'  onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}></Button>: null}
+                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='plus' onClick={() => this.createFavorite(player)}></Button> : null}
+                         
                         </Modal.Header>
                     <Modal.Content>
                         <p>College: {player.college}</p>
