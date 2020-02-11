@@ -1,7 +1,6 @@
 import React from 'react'
-import {Card, Image, Popup} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
-import NewsDetail from './NewsDetail'
+import {Card, Image} from 'semantic-ui-react'
+
 
 
 const NewsCard = props => {
