@@ -50,6 +50,7 @@ import {combineReducers} from 'redux'
             const removalIndex = oldState.favorites.findIndex(favorite => favorite.id === action.payload.id)
             return {...oldState, favorites: [...oldState.favorites.slice(0, removalIndex), ...oldState.favorites.slice(removalIndex + 1)]}
         case EDIT_PROFILE:
+            debugger
             return action.payload
         default:
             return oldState

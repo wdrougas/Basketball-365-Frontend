@@ -27,7 +27,6 @@ render() {
  let games = [].concat.apply([], this.props.games)
  let gameDates = games.map(game => game.date)
  let todaysGames = games.filter(game => game.date === this.state.selectedDate)
- console.log(todaysGames.length)
     return (
         <div>
             <br/>

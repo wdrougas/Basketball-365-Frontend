@@ -81,7 +81,7 @@ editProfile = (user) => {
                     <Grid.Column id="UserProfile-Column">
                     <Segment id="UserProfile-Segment">
                         <Header>Profile Information</Header>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                         <Form.Input id='first_name' label='First Name' value={this.state.first_name} onChange={e => this.onTodoChange(e.target.value)} disabled={this.state.disabled}></Form.Input>
                         <Form.Input id='last_name' label='Last Name' value={this.state.last_name} onChange={e => this.onTodoChange(e.target.value)} disabled={this.state.disabled}></Form.Input>
                         <Form.Input id='username' label='Username' value={this.state.username} onChange={e => this.onTodoChange(e.target.value)} disabled={this.state.disabled}></Form.Input>
@@ -90,7 +90,7 @@ editProfile = (user) => {
                         {this.props.teams.map(team => <option key={team.id} value={team.id} >{team.name}</option>)}
                         </Form.Field>
                         {this.state.disabled ? <Button onClick={this.handleClick.bind(this)}>Edit Profile</Button> : null}
-                        {this.state.disabled ? null: <Button onClick={(e) => this.handleSubmit(e)}>Submit Changes</Button>}
+                        {this.state.disabled ? null: <Button type='submit'>Submit Changes</Button>}
                         </Form>
                     </Segment>
                     </Grid.Column>
@@ -98,7 +98,7 @@ editProfile = (user) => {
                     <Segment id="UserProfile-Segment">
                         <Header>Favorite Players</Header>
                         {this.props.user.favorites.map(favorite => {
-                         return <List key={favorite.player.id} player={favorite.player} >
+                         return <List key={favorite.player_id} player={favorite.player} >
                          <List.Item >
                              <Modal size='mini' trigger={<List.Header as='a'>{favorite.player.position} - {favorite.player.first_name} {favorite.player.last_name}</List.Header>}>
                                  <Modal.Header>
