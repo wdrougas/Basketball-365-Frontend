@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import DateFnsUtils from '@date-io/date-fns'
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
 import { Grid, Header} from 'semantic-ui-react'
+import ParticlesContainer from './ParticlesContainer'
 
 class GameCardContainer extends React.Component {
     constructor(){
@@ -25,10 +26,10 @@ changeDate = date => {
     
 render() {
  let games = [].concat.apply([], this.props.games)
-
  let todaysGames = games.filter(game => game.date === this.state.selectedDate)
     return (
         <div>
+            <ParticlesContainer />
             <br/>
             <br/>
             <br />

@@ -27,8 +27,8 @@ const TodayGameCardContainer = props => {
     var topStories = props.news.articles.slice(0,15)
     // debugger
     return (
-        <div position>
-        <ParticlesContainer />
+        <div className="App">
+        <ParticlesContainer className='particles'/>
         <br/>
         <br/>
         <br/>

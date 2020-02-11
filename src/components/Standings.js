@@ -7,8 +7,8 @@ import ParticlesContainer from './ParticlesContainer'
 class Standings extends React.Component {
   render() {
     return (
-        <div>
-          <ParticlesContainer />
+      <div>
+      <ParticlesContainer />
           <br/>
           <br/>
           <br/>

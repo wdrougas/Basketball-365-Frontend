@@ -6,7 +6,7 @@ import Particles from 'react-particles-js'
 class ParticlesContainer extends React.Component {
     render() {
     return (
-        <div className='particles'>
+        <div className='particles' id="particles canvas">
         <Particles
             params={{
                     "particles": {
@@ -18,7 +18,7 @@ class ParticlesContainer extends React.Component {
                         }
                       },
                       "color": {
-                        "value": "#ffffff"
+                        "value": '#120066'
                       },
                       "shape": {
                         "type": "circle",
