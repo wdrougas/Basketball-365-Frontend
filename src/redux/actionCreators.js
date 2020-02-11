@@ -1,4 +1,4 @@
-import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES, DELETE_FAVORITE, FETCHED_NEWS, LOADING_NEWS} from './actionType'
+import {FETCHED_TEAMS, FETCHED_PLAYERS, FETCHED_GAMES, LOADING_GAMES, LOADING_PLAYERS, LOADING_TEAMS, FETCHED_STANDINGS, LOADING_STANDINGS, LOGGED_IN, FETCHED_COMMENTS, LOADING_COMMENTS, ADDED_COMMENT, DELETE_COMMENT, LOGGED_OUT, ADDED_FAVORITE, LOADING_FAVORITES, FETCHED_FAVORITES, DELETE_FAVORITE, FETCHED_NEWS, LOADING_NEWS, EDIT_PROFILE} from './actionType'
 
 //import thunk
 const NEWS_KEY = process.env.REACT_APP_NEWS_API_KEY
@@ -67,6 +67,10 @@ function deleteFavorite(favoriteObject) {
 
 function fetchedNews(newsArray) {
     return {type: FETCHED_NEWS, payload: newsArray}
+}
+
+function editProfile(userObject) {
+    return {type: EDIT_PROFILE, payload: userObject}
 }
 
 
@@ -168,4 +172,4 @@ function fetchingNews() {
 
 
 
-export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite, deleteFavorite, fetchingNews}
+export {fetchingGames, fetchingPlayers, fetchingTeams, fetchingStandings, fetchedUser, fetchingComments, addedComment, deleteComment, loggedOut, fetchingFavorites, addedFavorite, deleteFavorite, fetchingNews, editProfile}

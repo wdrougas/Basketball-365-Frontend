@@ -103,9 +103,9 @@ render() {
             <List.Item >
                 <Modal size='mini' trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
                     <Modal.Header>
-                        {player.first_name} {player.last_name}  
-                        {this.props.user && this.props.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='remove'  onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}></Button>: null}
-                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='plus' onClick={() => this.createFavorite(player)}></Button> : null}
+                        {`${player.first_name} ${player.last_name}  `}
+                        {this.props.user && this.props.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='remove' color='red' onClick={() => this.removeFavorite(this.props.favorites.find(favorite => favorite.user_id === this.props.user.id && favorite.player_id === player.id ))}></Button>: null}
+                        {this.props.user && !this.props.user.favorites.map(favorite => favorite.player_id).includes(player.id) ? <Button size='mini' icon='plus' color='green' onClick={() => this.createFavorite(player)}></Button> : null}
                          
                         </Modal.Header>
                     <Modal.Content>

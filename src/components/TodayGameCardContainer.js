@@ -41,7 +41,7 @@ const TodayGameCardContainer = props => {
                        <List>
                         {topStories.map(story => {
                             return <Segment vertical>
-                                <List.Item id="Timeline">
+                                <List.Item key={story.title} id="Timeline">
                                     <List.Header  as='a' href={story.url} target="_blank" id="Headline">{story.title}</List.Header>  
                                 </List.Item>
                             </Segment>
