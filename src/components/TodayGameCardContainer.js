@@ -4,11 +4,12 @@ import GameCard from './GameCard'
 import NewsCard from './NewsCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Grid, Segment} from 'semantic-ui-react'
+import {Grid, Segment, List, Image, Header} from 'semantic-ui-react'
 
 
 
 const TodayGameCardContainer = props => {
+    
     var games = props.user.team.home_games.concat(props.user.team.visiting_games)
     var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     const removalIndex = sorted.findIndex(game => game.arena === "")
@@ -17,60 +18,100 @@ const TodayGameCardContainer = props => {
     var lastGame = playedGames.slice(-1)[0]
     var currentGame = remainingGames[0]
     var nextGame = remainingGames[1]
-    var news = props.news.articles
-    var leadStory = props.news.articles[0]
-    var secondStory = props.news.articles[1]
-    var thirdStory = props.news.articles[2]
-    var fourthStory = props.news.articles[3]
-    var fifthStory = props.news.articles[4]
-
+    // var news = props.news.articles
+    // var leadStory = props.news.articles[0]
+    // var secondStory = props.news.articles[1]
+    // var thirdStory = props.news.articles[2]
+    // var fourthStory = props.news.articles[3]
+    // var fifthStory = props.news.articles[4]
+    var topStories = props.news.articles.slice(0,15)
+    // debugger
     return (
         <div >
         <br/>
         <br/>
         <br/>
-        <h1>Today's Headlines</h1>
-        <div className='ui grid fluid container'>
-            <Grid columns={5}>
-                <Grid.Row>
-                    <Grid.Column>
-                        <NewsCard key={leadStory.title} story={leadStory}/>
+        <br />
+        
+            <Grid columns={2}>
+                    <Grid.Column id="HomePage-Column">
+                        <br/>
+                        <h1>Today's Headlines</h1>
+                        
+                       <List>
+                        {topStories.map(story => {
+                            return <Segment vertical>
+                                <List.Item id="Timeline">
+                                    <List.Header  as='a' href={story.url} target="_blank" id="Headline">{story.title}</List.Header>  
+                                </List.Item>
+                            </Segment>
+                        })}
+                       </List>
+                       
                     </Grid.Column>
-                    <Grid.Column>
-                        <NewsCard key={secondStory.title} story={secondStory} />
-                    </Grid.Column>
-                    <Grid.Column>
-                        <NewsCard key={thirdStory.title} story={thirdStory} />
-                    </Grid.Column>
-                    <Grid.Column>
-                        <NewsCard key={fourthStory.title} story={fourthStory} />
-                    </Grid.Column>
-                    <Grid.Column>
-                        <NewsCard key={fifthStory.title} story={fifthStory} />
-                    </Grid.Column>
-                </Grid.Row>
-                <div>
+          
+             
+                    <Grid.Column id='HomePage-Column'>
+                        <br/>
                     <h1>{props.user.team.name} </h1>
-                </div>
-                <Grid.Row>
-                    <Grid.Column></Grid.Column>
-                    <Grid.Column>
+                        
+                        <Segment vertical>
                         <h3>Previous Game</h3>
-                        <GameCard key={lastGame.id} game={lastGame}/>
-                    </Grid.Column>
-                    <Grid.Column>
+                        <div className='flex-container' >
+                            <div className='game'>
+                            <Image src={lastGame.visiting_team_logo} size='small' />
+                            <h3>{lastGame.visiting_team_name}</h3>
+                            </div>
+                            <div className='game' id='score' >
+                            {lastGame.visiting_team_score} 
+                            </div>
+                            <div className='game' id='score' >
+                            {lastGame.home_team_score}  
+                            </div>
+                            <div className='game'>
+                            <Image src={lastGame.home_team_logo} size='small'/>
+                            <h3>{lastGame.home_team_name}</h3>
+                            </div>
+                        </div>
+                        </Segment>
+                        <Segment vertical>               
                         <h3>Upcoming Game</h3>
-                        <TodayGameCard key={currentGame.id} game={currentGame}/>
-                    </Grid.Column>
-                    <Grid.Column>
+                        <div className='flex-container' >
+                            <div className='game'>
+                            <Image src={currentGame.visiting_team_logo} size='small' />
+                            <h3>{currentGame.visiting_team_name}</h3>
+                            </div>
+                            <div className='game' id='score'>
+                                @
+                            </div>
+                            <div className='game'>
+                            <Image src={currentGame.home_team_logo} size='small'/>
+                            <h3>{currentGame.home_team_name}</h3>
+                            </div>
+                        </div>
+                        </Segment> 
+                        <Segment vertical>
                         <h3>Following Game</h3>
-                        <TodayGameCard key={nextGame.id} game={nextGame}/>
+                        <div className='flex-container' >
+                            <div className='game'>
+                            <Image src={nextGame.visiting_team_logo} size='small' />
+                            <h3>{nextGame.visiting_team_name}</h3>
+                            </div>
+                            <div className='game' id='score'>
+                                @
+                            </div>
+                            <div className='game'>
+                            <Image src={nextGame.home_team_logo} size='small'/>
+                            <h3>{nextGame.home_team_name}</h3>
+                            </div>
+                        </div>
+                        </Segment>
                     </Grid.Column>
-                    <Grid.Column></Grid.Column>
-                </Grid.Row>
+                    
+                
             </Grid>
         </div>
-        </div>
+        
     )
 }
 

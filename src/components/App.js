@@ -14,7 +14,7 @@ import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
 import NewsDetail from './NewsDetail'
 import {Segment, Image} from 'semantic-ui-react'
-import Particles from 'react-particles-js'
+
 
 
 
@@ -52,10 +52,10 @@ render() {
           <Route exact path='/:userId' render={() => this.props.user ? <UserProfile />: <Redirect to='/login' />} />
           <Route exact path='/news/:story' component={NewsDetail} />
         </Switch>
-        <Segment inverted>
+        {/* <Segment inverted>
           Inverted Content
           <Image src='https://library.kissclipart.com/20180930/vw/kissclipart-nba-logo-4k-clipart-logo-basketball-201718-nba-f701ef6f80da4ae9.png' size='small' centered />
-        </Segment>
+        </Segment> */}
       </div>
     );
   }

@@ -9,8 +9,8 @@ const standingsData = 'http://localhost:3000/standings'
 const commentsData = 'http://localhost:3000/comments'
 const favoritesData = 'http://localhost:3000/favorites'
 const newsData = ('https://newsapi.org/v2/everything?' +
-'q=NBA&' +
-'from=2020-02-08&' +
+'q=NBA basketball&' +
+'from=2020-02-10&' +
 'sortBy=popularity&' +
 `apiKey=${NEWS_KEY}`)
 

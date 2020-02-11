@@ -95,8 +95,8 @@ render() {
             
             <Grid columns ={2} relaxed='very'>
             <Grid.Column id="Team-Column">
-            <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <h3>Roster</h3>
+            <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <List  >
             {this.props.team.players.map(player => {
             return <Segment vertical >
@@ -127,8 +127,8 @@ render() {
                 </Segment>
             </Grid.Column>
             <Grid.Column id="Team-Column">
-            <Segment style={{overflow: 'auto', maxHeight: 800 }} >
                 <h3>Schedule</h3>
+            <Segment style={{overflow: 'auto', maxHeight: 800 }} >
                 <List >
                 {this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)}).map(game => {
                        return <Segment vertical >
