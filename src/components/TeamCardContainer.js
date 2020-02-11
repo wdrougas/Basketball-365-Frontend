@@ -2,12 +2,14 @@ import React from 'react'
 import TeamCard from './TeamCard'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Segment, Grid} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
+import ParticlesContainer from './ParticlesContainer'
 
 
 const TeamCardContainer = props => {
             return (
                 <div>
+                <ParticlesContainer />
                 <br />
                 <br />
                 <br/>

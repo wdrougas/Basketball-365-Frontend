@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, Header, List, Modal, Button, Segment, Form} from 'semantic-ui-react'
-import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
+import {deleteFavorite} from '../redux/actionCreators'
 import {Link} from 'react-router-dom'
 import {editProfile} from '../redux/actionCreators'
 

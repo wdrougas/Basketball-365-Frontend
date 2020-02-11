@@ -1,14 +1,14 @@
 import React from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Segment, Grid, List, Image, Step} from 'semantic-ui-react'
+import {Segment, Grid, List, Image} from 'semantic-ui-react'
+import ParticlesContainer from './ParticlesContainer'
 
 class Standings extends React.Component {
   render() {
-    let eastStandings = this.props.standings.filter(standing => standing.confernece === 'east')
-    let westStandings = this.props.standings.filter(standing => standing.conference === 'west')
     return (
         <div>
+          <ParticlesContainer />
           <br/>
           <br/>
           <br/>

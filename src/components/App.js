@@ -13,8 +13,7 @@ import {fetchingGames, fetchingTeams, fetchingPlayers, fetchingStandings, fetchi
 import TeamCardContainer from './TeamCardContainer';
 import UserProfile from './UserProfile'
 import NewsDetail from './NewsDetail'
-import {Segment, Image} from 'semantic-ui-react'
-import {Particles} from 'react-particles-js'
+
 
 
 
@@ -40,10 +39,11 @@ class App extends React.Component {
 render() {
     return (
       <div className="App">
-        <NavBar className="App-header"/>
+        <NavBar className="App" />
+        
         <Switch>
-          <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
           <Route exact path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
+          <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
           <Route exact path='/games' component={GameCardContainer} />
           <Route exact path='/teams/:id' component={TeamDetail} />
           <Route path='/teams' component={TeamCardContainer} />

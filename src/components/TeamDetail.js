@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {Image, List, Modal, Segment, Grid,Button, Column, Icon} from 'semantic-ui-react'
+import {withRouter} from 'react-router-dom'
+import {Image, List, Modal, Segment, Grid,Button} from 'semantic-ui-react'
 import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
-// import state from 'sweetalert/typings/modules/state'
+import ParticlesContainer from './ParticlesContainer'
+
 
 
 const favoritesData = 'http://localhost:3000/favorites'
@@ -87,7 +88,8 @@ render() {
     return  !this.props.team ? <div className="ui active transition visible dimmer">
     <div className="content"><div className="ui text loader">Loading</div></div>
   </div> : (
-        <div>
+        <div >
+           <ParticlesContainer />
             <br/>
             <br/>
             <br />
@@ -172,7 +174,6 @@ render() {
                  : null}
             </Modal.Content>
             </Modal> : null}
-        
         </div>
         )
     }

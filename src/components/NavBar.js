@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link, NavLink, withRouter } from 'react-router-dom'
+import {Link, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Header, Segment, Grid, Dropdown} from 'semantic-ui-react'
+import {Header, Grid, Dropdown} from 'semantic-ui-react'
 import {loggedOut} from '../redux/actionCreators'
 
 

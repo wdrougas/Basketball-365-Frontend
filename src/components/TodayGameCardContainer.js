@@ -1,10 +1,10 @@
 import React from 'react'
-import TodayGameCard from './TodayGameCard'
-import GameCard from './GameCard'
-import NewsCard from './NewsCard'
+
+
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Grid, Segment, List, Image, Header} from 'semantic-ui-react'
+import {Grid, Segment, List, Image} from 'semantic-ui-react'
+import ParticlesContainer from './ParticlesContainer'
 
 
 
@@ -27,7 +27,8 @@ const TodayGameCardContainer = props => {
     var topStories = props.news.articles.slice(0,15)
     // debugger
     return (
-        <div >
+        <div position>
+        <ParticlesContainer />
         <br/>
         <br/>
         <br/>
@@ -37,7 +38,7 @@ const TodayGameCardContainer = props => {
                     <Grid.Column id="HomePage-Column">
                         <br/>
                         <h1>Today's Headlines</h1>
-                        
+                        <Segment>
                        <List>
                         {topStories.map(story => {
                             return <Segment vertical>
@@ -47,14 +48,14 @@ const TodayGameCardContainer = props => {
                             </Segment>
                         })}
                        </List>
-                       
+                       </Segment>
                     </Grid.Column>
           
              
                     <Grid.Column id='HomePage-Column'>
                         <br/>
                     <h1>{props.user.team.name} </h1>
-                        
+                        <Segment>
                         <Segment vertical>
                         <h3>Previous Game</h3>
                         <div className='flex-container' >
@@ -105,6 +106,7 @@ const TodayGameCardContainer = props => {
                             <h3>{nextGame.home_team_name}</h3>
                             </div>
                         </div>
+                        </Segment>
                         </Segment>
                     </Grid.Column>
                     
