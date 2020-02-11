@@ -38,7 +38,7 @@ const TodayGameCardContainer = props => {
                     <Grid.Column id="HomePage-Column">
                         <br/>
                         <h1>Today's Headlines</h1>
-                        <Segment>
+                        <Segment id='HomePage-Segment'>
                        <List>
                         {topStories.map(story => {
                             return <Segment vertical>
@@ -55,7 +55,7 @@ const TodayGameCardContainer = props => {
                     <Grid.Column id='HomePage-Column'>
                         <br/>
                     <h1>{props.user.team.name} </h1>
-                        <Segment>
+                        <Segment id="HomePage-Segment">
                         <Segment vertical>
                         <h3>Previous Game</h3>
                         <div className='flex-container' >

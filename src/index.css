@@ -14,6 +14,7 @@ code {
 
 .ui.card{
   height: 31vw;
+  background: transparent
 }
 
 .ui.small.image{

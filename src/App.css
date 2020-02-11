@@ -179,6 +179,8 @@ body::after {
   text-align: center
 }
 
-
+.ui.segment {
+  background: transparent
+}
 
 
