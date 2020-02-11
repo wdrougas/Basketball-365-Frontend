@@ -2,7 +2,7 @@ import React from 'react'
 
 
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {Grid, Segment, List, Image} from 'semantic-ui-react'
 import ParticlesContainer from './ParticlesContainer'
 
@@ -10,21 +10,21 @@ import ParticlesContainer from './ParticlesContainer'
 
 const TodayGameCardContainer = props => {
     
-    var games = props.user.team.home_games.concat(props.user.team.visiting_games)
-    var sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
+    const games = props.user.team.home_games.concat(props.user.team.visiting_games)
+    const sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     const removalIndex = sorted.findIndex(game => game.arena === "")
-    var playedGames = sorted.slice(0, removalIndex)
-    var remainingGames = sorted.slice(removalIndex)
-    var lastGame = playedGames.slice(-1)[0]
-    var currentGame = remainingGames[0]
-    var nextGame = remainingGames[1]
+    const playedGames = sorted.slice(0, removalIndex)
+    const remainingGames = sorted.slice(removalIndex)
+    const lastGame = playedGames.slice(-1)[0]
+    const currentGame = remainingGames[0]
+    const nextGame = remainingGames[1]
     // var news = props.news.articles
     // var leadStory = props.news.articles[0]
     // var secondStory = props.news.articles[1]
     // var thirdStory = props.news.articles[2]
     // var fourthStory = props.news.articles[3]
     // var fifthStory = props.news.articles[4]
-    var topStories = props.news.articles.slice(0,15)
+    const topStories = props.news.articles.slice(0,15)
     // debugger
     return (
         <div className="App">
@@ -38,29 +38,26 @@ const TodayGameCardContainer = props => {
                     <Grid.Column id="HomePage-Column">
                         <br/>
                         <h1>Today's Headlines</h1>
-                        <Segment id='HomePage-Segment'>
                        <List>
                         {topStories.map(story => {
-                            return <Segment vertical>
+                            return <Segment vertical id='HomePage-Segment'>
                                 <List.Item key={story.title} id="Timeline">
                                     <List.Header  as='a' href={story.url} target="_blank" id="Headline">{story.title}</List.Header>  
                                 </List.Item>
                             </Segment>
                         })}
                        </List>
-                       </Segment>
                     </Grid.Column>
           
              
                     <Grid.Column id='HomePage-Column'>
                         <br/>
                     <h1>{props.user.team.name} </h1>
-                        <Segment id="HomePage-Segment">
-                        <Segment vertical>
+                        <Segment vertical id="HomePage-Segment">
                         <h3>Previous Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
-                            <Image src={lastGame.visiting_team_logo} size='small' />
+                            <Link to={`/teams/${lastGame.visiting_team_id}`}><Image src={lastGame.visiting_team_logo} size='small' /></Link>
                             <h3>{lastGame.visiting_team_name}</h3>
                             </div>
                             <div className='game' id='score' >
@@ -70,7 +67,7 @@ const TodayGameCardContainer = props => {
                             {lastGame.home_team_score}  
                             </div>
                             <div className='game'>
-                            <Image src={lastGame.home_team_logo} size='small'/>
+                            <Link to={`/teams/${lastGame.home_team_id}`}><Image src={lastGame.home_team_logo} size='small'/></Link>
                             <h3>{lastGame.home_team_name}</h3>
                             </div>
                         </div>
@@ -79,14 +76,14 @@ const TodayGameCardContainer = props => {
                         <h3>Upcoming Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
-                            <Image src={currentGame.visiting_team_logo} size='small' />
+                            <Link to={`/teams/${currentGame.visiting_team_id}`}><Image src={currentGame.visiting_team_logo} size='small' /></Link>
                             <h3>{currentGame.visiting_team_name}</h3>
                             </div>
                             <div className='game' id='score'>
                                 @
                             </div>
                             <div className='game'>
-                            <Image src={currentGame.home_team_logo} size='small'/>
+                            <Link to={`/teams/${currentGame.home_team_id}`}><Image src={currentGame.home_team_logo} size='small'/></Link>
                             <h3>{currentGame.home_team_name}</h3>
                             </div>
                         </div>
@@ -95,18 +92,17 @@ const TodayGameCardContainer = props => {
                         <h3>Following Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
-                            <Image src={nextGame.visiting_team_logo} size='small' />
+                            <Link to={`/teams/${nextGame.visiting_team_id}`}><Image src={nextGame.visiting_team_logo} size='small' /></Link>
                             <h3>{nextGame.visiting_team_name}</h3>
                             </div>
                             <div className='game' id='score'>
                                 @
                             </div>
                             <div className='game'>
-                            <Image src={nextGame.home_team_logo} size='small'/>
+                            <Link to={`/teams/${nextGame.home_team_id}`}><Image src={nextGame.home_team_logo} size='small'/></Link>
                             <h3>{nextGame.home_team_name}</h3>
                             </div>
                         </div>
-                        </Segment>
                         </Segment>
                     </Grid.Column>
                     

@@ -4,6 +4,7 @@ import {Grid, Header, List, Modal, Button, Segment, Form} from 'semantic-ui-reac
 import {deleteFavorite} from '../redux/actionCreators'
 import {Link} from 'react-router-dom'
 import {editProfile} from '../redux/actionCreators'
+import ParticlesContainer from './ParticlesContainer'
 
 
 
@@ -73,6 +74,7 @@ editProfile = (user) => {
     render() {
         return (
             <div>
+                <ParticlesContainer />
                 <br/>
                 <br/>
                 <br/>
