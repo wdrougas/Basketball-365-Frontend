@@ -11,9 +11,6 @@ const TeamCardContainer = props => {
                 <div>
                 <ParticlesContainer />
                 <br />
-                <br />
-                <br />
-                <br/>
                     <div className= 'ui grid fluid container'>
                     <Grid columns={6}>
                     {props.teams.map(team => {

@@ -9,9 +9,6 @@ class Standings extends React.Component {
     return (
       <div>
       <ParticlesContainer />
-          <br/>
-          <br/>
-          <br/>
           <h2>Standings</h2>
           
             <Grid columns={2} relaxed='very' >
@@ -24,16 +21,16 @@ class Standings extends React.Component {
                     return <Segment vertical >
                     <List.Item>
                     <Grid columns={3}   >
-                    <Grid.Row>
+                    <Grid.Row className='Standing-Row'>
                       <Grid.Column>
-                      <Image id='Image' size='mini' src={standing.team_logo} />
+                      <Image id='Image' size='tiny' src={standing.team_logo} />
                       </Grid.Column>
                       
                        
                         <Grid.Column className='Standing-Team'>
                         <Link to={`/teams/${standing.team_id}`}>{standing.team_name} </Link>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column className="Standing-Record">
                         {standing.win} - {standing.loss}
                         </Grid.Column>
                 
@@ -56,14 +53,14 @@ class Standings extends React.Component {
                     return <Segment vertical >
                     <List.Item>
                       <Grid columns={3} >
-                        <Grid.Row>
+                        <Grid.Row className='Standing-Row'>
                       <Grid.Column >
-                      <Image id="Image" size='mini' src={standing.team_logo} />
+                      <Image id="Image" size='tiny' src={standing.team_logo} />
                       </Grid.Column>
                       <Grid.Column className='Standing-Team'>
                         <Link to={`/teams/${standing.team_id}`}>{standing.team_name}</Link>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column className="Standing-Record">
                         {standing.win} - {standing.loss}
                         </Grid.Column>
                       </Grid.Row>

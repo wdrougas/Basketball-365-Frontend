@@ -30,9 +30,6 @@ render() {
     return (
         <div>
             <ParticlesContainer />
-            <br/>
-            <br/>
-            <br />
             <h1>2019-2020 Schedule</h1>
             <br/>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

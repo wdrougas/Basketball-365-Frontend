@@ -24,19 +24,13 @@ const TodayGameCardContainer = props => {
     // var thirdStory = props.news.articles[2]
     // var fourthStory = props.news.articles[3]
     // var fifthStory = props.news.articles[4]
-    const topStories = props.news.articles.slice(0,15)
+    const topStories = props.news.articles.slice(0,13)
     // debugger
     return (
         <div className="App">
-        <ParticlesContainer className='particles'/>
-        <br/>
-        <br/>
-        <br/>
-        <br />
-        
+        <ParticlesContainer className='particles'/>  
             <Grid columns={2}>
                     <Grid.Column id="HomePage-Column">
-                        <br/>
                         <h1>Today's Headlines</h1>
                        <List>
                         {topStories.map(story => {
@@ -51,7 +45,6 @@ const TodayGameCardContainer = props => {
           
              
                     <Grid.Column id='HomePage-Column'>
-                        <br/>
                     <h1>{props.user.team.name} </h1>
                         <Segment vertical id="HomePage-Segment">
                         <h3>Previous Game</h3>

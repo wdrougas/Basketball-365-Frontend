@@ -46,6 +46,7 @@ handleSubmit = e => {
     <div className="Login"> 
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' >
   <Grid.Column style={{ maxWidth: 450 }}>
+    <br />
     <Header as='h2' color='blue' textAlign='center'>
       Sign up
     </Header>

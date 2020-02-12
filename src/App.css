@@ -16,6 +16,8 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  width: 100%;
+  height: 100%
 }
 
 
@@ -80,7 +82,8 @@
 
 .Standing-Team {
   font-size: 26px;
-  text-align: center
+  text-align: center;
+  line-height: 1.2em
 }
 
 body::after {
@@ -103,9 +106,9 @@ body::after {
     padding-right: 3.5rem;
 }
 
-#Image {
+/* #Image {
   height: 30px
-}
+} */
 
 #Team-Column {
   padding-left: 3.5rem;
@@ -181,7 +184,21 @@ body::after {
 }
 
 .ui.segment {
-  background: transparent
+  background-color: rgba(255, 255, 255, 0.7)
+  
+}
+
+.Standing-Row{
+  height: 120px;
+}
+
+.Standing-Row.row{
+  display: flex !important;
+  align-items: center !important;
+}
+
+.Standing-Record {
+  font-size: 20px
 }
 
 
