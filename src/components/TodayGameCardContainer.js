@@ -34,9 +34,9 @@ const TodayGameCardContainer = props => {
                         <h1>Today's Headlines</h1>
                        <List>
                         {topStories.map(story => {
-                            return <Segment id='HomePage-Segment'>
+                            return <Segment className='HomePage-Segment'>
                                 <List.Item key={story.title} id="Timeline">
-                                    <List.Header  as='a' href={story.url} target="_blank" id="Headline">{story.title}</List.Header>  
+                                    <List.Header  as='a' href={story.url} target="_blank" className="Headline">{story.title}</List.Header>  
                                 </List.Item>
                             </Segment>
                         })}
