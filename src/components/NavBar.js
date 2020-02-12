@@ -15,7 +15,7 @@ fun() {
 
     render() {
     return (
-        <Menu>
+        <Menu fixed>
                
             <Menu.Item onClick={() => this.props.history.push('/')}>
                         <i className='icon basketball ball' color='black'/>

@@ -75,9 +75,6 @@ editProfile = (user) => {
         return (
             <div>
                 <ParticlesContainer />
-                <br/>
-                <br/>
-                <br/>
             <h1>{this.props.user.first_name} {this.props.user.last_name}</h1>
             <Grid centered columns={2} widths='equal'>
                     <Grid.Column id="UserProfile-Column">

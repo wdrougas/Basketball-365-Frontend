@@ -14,7 +14,7 @@ class Standings extends React.Component {
             <Grid columns={2} relaxed='very' >
               <Grid.Column id='Standing-Column'>
                 
-              <h3>East Standings</h3>
+              <h3>Eastern Conference</h3>
                 <List>
                 {this.props.standings.map(standing => {
                   if (standing.conference === 'east') {
@@ -45,7 +45,7 @@ class Standings extends React.Component {
               </Grid.Column>
               <Grid.Column id="Standing-Column">
                 
-                <h3>West Standings</h3>
+                <h3>Western Conference</h3>
             
                 <List >
                 {this.props.standings.map(standing => {

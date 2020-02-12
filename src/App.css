@@ -192,9 +192,13 @@
   background-color: rgba(255, 255, 255, 0.7) 
 }
 
-.ui.menu {
-  background-color: rgba(255, 255, 255, 0.2)
-}
+/* .ui.menu {
+  position: fixed;
+  z-index: 101;
+  margin: 0;
+  width: 100%;
+  display: flex
+} */
 
 .Standing-Row{
   height: 120px;
