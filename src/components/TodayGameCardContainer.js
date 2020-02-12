@@ -27,14 +27,14 @@ const TodayGameCardContainer = props => {
     const topStories = props.news.articles.slice(0,13)
     // debugger
     return (
-        <div className="App">
+        <div >
         <ParticlesContainer className='particles'/>  
-            <Grid columns={2}>
-                    <Grid.Column id="HomePage-Column">
+            <Grid columns={2} >
+                    <Grid.Column id="HomePage-Column" width={8}>
                         <h1>Today's Headlines</h1>
                        <List>
                         {topStories.map(story => {
-                            return <Segment vertical id='HomePage-Segment'>
+                            return <Segment id='HomePage-Segment'>
                                 <List.Item key={story.title} id="Timeline">
                                     <List.Header  as='a' href={story.url} target="_blank" id="Headline">{story.title}</List.Header>  
                                 </List.Item>
@@ -44,9 +44,9 @@ const TodayGameCardContainer = props => {
                     </Grid.Column>
           
              
-                    <Grid.Column id='HomePage-Column'>
+                    <Grid.Column id='HomePage-Column' width={8}>
                     <h1>{props.user.team.name} </h1>
-                        <Segment vertical id="HomePage-Segment">
+                        <Segment id="HomePage-Segment">
                         <h3>Previous Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
@@ -65,7 +65,7 @@ const TodayGameCardContainer = props => {
                             </div>
                         </div>
                         </Segment>
-                        <Segment vertical>               
+                        <Segment >               
                         <h3>Upcoming Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
@@ -81,7 +81,7 @@ const TodayGameCardContainer = props => {
                             </div>
                         </div>
                         </Segment> 
-                        <Segment vertical>
+                        <Segment >
                         <h3>Following Game</h3>
                         <div className='flex-container' >
                             <div className='game'>
