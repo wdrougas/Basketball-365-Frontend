@@ -8,7 +8,7 @@ class Standings extends React.Component {
   render() {
     return (
       <div>
-      <ParticlesContainer />
+      <ParticlesContainer className='particles'/>
           <h2>Standings</h2>
           
             <Grid columns={2} relaxed='very' >

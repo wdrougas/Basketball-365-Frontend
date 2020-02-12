@@ -9,7 +9,7 @@ import ParticlesContainer from './ParticlesContainer'
 const TeamCardContainer = props => {
             return (
                 <div>
-                <ParticlesContainer />
+                <ParticlesContainer className='particles' />
                 <br />
                     <div className= 'ui grid fluid container'>
                     <Grid columns={6}>

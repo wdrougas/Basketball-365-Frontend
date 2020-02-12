@@ -15,11 +15,11 @@ fun() {
 
     render() {
     return (
-        <Menu fixed>
+        <Menu>
                
             <Menu.Item onClick={() => this.props.history.push('/')}>
                         <i className='icon basketball ball' color='black'/>
-                        NBA App
+                        NBA 365
             </Menu.Item>
                
             <Menu.Item onClick={() => this.props.history.push('/standings')}>

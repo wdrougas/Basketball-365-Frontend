@@ -84,13 +84,18 @@ createFavorite = (player) => {
     
 
 render() {
+    const sortedPlayers = this.props.team.players.sort((a,b) => {
+        if (a.last_name < b.last_name) {return -1}
+        if (a.last_name > b.last_name) {return 1}
+        return 0
+    })
     // const games = this.props.team.home_games.concat(this.props.team.visiting_games)
     // const sorted = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     return  !this.props.team ? 
     <div className="content"><div className="ui active inline centered text loader">Loading</div></div>
-   : (
+    : (
         <div >
-           <ParticlesContainer />
+           <ParticlesContainer className='particles'/>
             <h1>{this.props.team.name} <Image src={this.props.team.logo} avatar /> </h1>
             
             <Grid columns ={2} >
@@ -98,7 +103,7 @@ render() {
             <h3>Roster</h3>
             <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <List  >
-            {this.props.team.players.map(player => {
+            {sortedPlayers.map(player => {
             return <Segment vertical >
             <List.Item >
                 <Modal size='mini' trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>

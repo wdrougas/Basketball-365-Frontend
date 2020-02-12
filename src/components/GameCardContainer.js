@@ -29,7 +29,7 @@ render() {
  let todaysGames = games.filter(game => game.date === this.state.selectedDate)
     return (
         <div>
-            <ParticlesContainer />
+            <ParticlesContainer className='particles' />
             <h1>2019-2020 Schedule</h1>
             <br/>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

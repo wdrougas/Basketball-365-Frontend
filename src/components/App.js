@@ -39,8 +39,7 @@ class App extends React.Component {
 render() {
     return (
       <div className="App">
-        <NavBar />
-               
+        <NavBar />     
         <Switch>
           <Route exact path='/login' render={() => this.props.user ? <Redirect to='/'/>: <Loginform/>}/> 
           <Route exact path ='/' render={() => this.props.user ? <TodayGameCardContainer /> : <Redirect to='/login' />}/>
