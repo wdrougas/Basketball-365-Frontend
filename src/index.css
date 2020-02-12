@@ -20,6 +20,6 @@ code {
 .ui.small.image{
   /* width: calc(50%); */
   height: 8vw;
-  margin-top: 0.8vw
+  margin-top: 0.8vw;
   /* object-fit: cover; */
 }

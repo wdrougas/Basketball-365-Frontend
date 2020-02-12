@@ -14,7 +14,7 @@ const TeamCardContainer = props => {
                     <div className= 'ui grid fluid container'>
                     <Grid columns={6}>
                     {props.teams.map(team => {
-                    return <Grid.Column><TeamCard key={team.id} team={team}/> </Grid.Column> })}
+                    return <Grid.Column className="TeamCard-Column"><TeamCard key={team.id} team={team}/> </Grid.Column> })}
                     </Grid>
                     </div>
                 </div>

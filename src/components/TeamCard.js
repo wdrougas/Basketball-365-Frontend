@@ -6,13 +6,9 @@ import {Link, withRouter} from 'react-router-dom'
 
 const TeamCard = props => {
     return (
-        <div className='ui grid fluid container'>
-            <Grid.Column>
-                <Segment circular className ='ui small image'>
-                <Link to={`/teams/${props.team.id}`}><Image src={props.team.logo} /></Link>
+        <div className='TeamCard'>
+                <Link to={`/teams/${props.team.id}`}><Image className="TeamCardImage" src={props.team.logo} /></Link>
                 {/* <h2>{props.team.name}</h2> */}
-                </Segment>
-            </Grid.Column>
         </div>
         )
 }

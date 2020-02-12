@@ -85,18 +85,15 @@ createFavorite = (player) => {
 render() {
     // const games = this.props.team.home_games.concat(this.props.team.visiting_games)
     // const sorted = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
-    return  !this.props.team ? <div className="ui active transition visible dimmer">
+    return  !this.props.team ? <div className="ui active transition visible dimmer App">
     <div className="content"><div className="ui text loader">Loading</div></div>
   </div> : (
         <div >
            <ParticlesContainer />
-            <br/>
-            <br/>
-            <br />
             <h1>{this.props.team.name} <Image src={this.props.team.logo} avatar /> </h1>
             
-            <Grid columns ={2} relaxed='very'>
-            <Grid.Column id="Team-Column">
+            <Grid columns ={2} >
+            <Grid.Column id="Team-Column" >
             <h3>Roster</h3>
             <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <List  >
@@ -128,7 +125,7 @@ render() {
                 <CommentContainer team={this.props.team}/>
                 </Segment>
             </Grid.Column>
-            <Grid.Column id="Team-Column">
+            <Grid.Column id="Team-Column" >
                 <h3>Schedule</h3>
             <Segment style={{overflow: 'auto', maxHeight: 800 }} >
                 <List >

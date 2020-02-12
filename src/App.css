@@ -86,9 +86,9 @@
   line-height: 1.2em
 }
 
-body::after {
+/* body::after {
   content: "";
-  /* background-image: url('https://www.drapizagallery.com/drapizagallery/wp-content/uploads/2013/05/background-web-grey.jpg'); */
+  background-image: url('https://www.drapizagallery.com/drapizagallery/wp-content/uploads/2013/05/background-web-grey.jpg');
   opacity: 0.5;
   top: 0;
   left: 0;
@@ -99,11 +99,11 @@ body::after {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-}
+} */
 
 #Standing-Column {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 
 /* #Image {
@@ -114,6 +114,8 @@ body::after {
   padding-left: 3.5rem;
   padding-right: 3.5rem;
 }
+
+
 
 #Headline {
   font-size: 20px;
@@ -191,7 +193,7 @@ body::after {
 }
 
 .ui.menu {
-  background-color: rgba(255, 255, 255, 0.7)
+  background-color: rgba(255, 255, 255, 0.2)
 }
 
 .Standing-Row{
@@ -206,5 +208,26 @@ body::after {
 .Standing-Record {
   font-size: 20px
 }
+
+
+.TeamCard {
+  border: 1px solid rgba(34,36,38,.15);
+  padding: 2.5em;
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7)
+}
+
+.TeamCardImage {
+  max-height: 100%;
+  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  vertical-align: center;
+}
+
 
 
