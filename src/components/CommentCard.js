@@ -3,7 +3,7 @@ import {Comment} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deleteComment} from '../redux/actionCreators'
-import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers'
+import moment from 'moment'
 
 class CommentCard extends React.Component {
   constructor(){
@@ -26,7 +26,7 @@ class CommentCard extends React.Component {
         <Comment.Content>
     <Comment.Author as='a'>{this.props.comment.user.username}</Comment.Author>
           <Comment.Metadata>
-            <div>{this.props.comment.created_at}</div>
+            <div>{moment(this.props.comment.created_at).format("LL")}</div>
           </Comment.Metadata>
           <Comment.Text>{this.props.comment.body}</Comment.Text>
           <Comment.Actions>

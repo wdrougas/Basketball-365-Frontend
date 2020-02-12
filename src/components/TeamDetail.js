@@ -6,6 +6,7 @@ import CommentContainer from './CommentContainer'
 import swal from 'sweetalert'
 import {addedFavorite, deleteFavorite} from '../redux/actionCreators'
 import ParticlesContainer from './ParticlesContainer'
+import moment from 'moment'
 
 
 
@@ -110,7 +111,7 @@ render() {
                     <Modal.Content>
                         <p>College: {player.college}</p>
                         <p>Years Pro: {player.yearsPro}</p>
-                        <p>Date of Birth: {player.date_of_birth}</p>
+                        <p>Date of Birth: {moment(player.date_of_birth).format("LL")}</p>
                         <p>Country: {player.country} </p>
                     </Modal.Content>
                </Modal>               
