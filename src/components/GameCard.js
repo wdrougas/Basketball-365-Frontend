@@ -11,7 +11,7 @@ const GameCard = props => {
             <Image src={props.game.home_team_logo} size='small' />
         </Image.Group>
         <Card.Content>
-        <Card.Header><Link to={`/teams/${props.game.home_team_id}`}>{props.game.visiting_team_name}</Link> at <Link to={`/teams/${props.game.visiting_team_id}`}>{props.game.home_team_name}</Link></Card.Header>
+        <Card.Header><Link to={`/teams/${props.game.visiting_team_id}`}>{props.game.visiting_team_name}</Link> at <Link to={`/teams/${props.game.home_team_id}`}>{props.game.home_team_name}</Link></Card.Header>
         <Card.Description>
             {props.game.arena !== '' && props.game.city !== '' ? 
             <div>
