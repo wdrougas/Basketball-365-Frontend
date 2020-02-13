@@ -84,11 +84,11 @@ createFavorite = (player) => {
     
 
 render() {
-    const sortedPlayers = this.props.team.players.sort((a,b) => {
-        if (a.last_name < b.last_name) {return -1}
-        if (a.last_name > b.last_name) {return 1}
-        return 0
-    })
+    // const sortedPlayers = this.props.team.players.sort((a,b) => {
+    //     if (a.last_name < b.last_name) {return -1}
+    //     if (a.last_name > b.last_name) {return 1}
+    //     return 0
+    // })
     // const games = this.props.team.home_games.concat(this.props.team.visiting_games)
     // const sorted = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     return  !this.props.team ? 
@@ -103,7 +103,11 @@ render() {
             <h3>Roster</h3>
             <Segment style={{overflow: 'auto', maxHeight: 400 }} >
             <List  >
-            {sortedPlayers.map(player => {
+            {this.props.team.players.sort((a,b) => {
+        if (a.last_name < b.last_name) {return -1}
+        if (a.last_name > b.last_name) {return 1}
+        return 0
+    }).map(player => {
             return <Segment vertical >
             <List.Item >
                 <Modal size='mini' trigger={<List.Header as='a'>{player.position} - {player.first_name} {player.last_name}</List.Header>}>
