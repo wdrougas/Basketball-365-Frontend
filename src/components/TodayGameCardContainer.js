@@ -46,7 +46,7 @@ const TodayGameCardContainer = props => {
              
                     <Grid.Column id='HomePage-Column' width={8}>
                     <h1>{props.user.team.name} </h1>
-                        <Segment id="HomePage-Segment">
+                        <Segment className="HomePage-Segment">
                         <h3>Previous Game</h3>
                         <div className='flex-container' >
                             <div className='game'>

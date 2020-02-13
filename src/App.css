@@ -16,8 +16,6 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  width: 100%;
-  height: 100%
 }
 
 .particles {
@@ -163,13 +161,13 @@
 }
 
 #UserProfile-Column {
-  padding-left: 3rem;
-  padding-right: 3rem  
+  padding-left: 4rem;
+  padding-right: 4rem  
 }
 
-#UserProfile-Segment {
+/* .UserProfile-Segment {
   width: 300px
-}
+} */
 
 
 /* #particles canvas{

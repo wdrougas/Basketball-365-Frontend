@@ -1,11 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, Header, List, Modal, Button, Segment, Form} from 'semantic-ui-react'
-import {deleteFavorite} from '../redux/actionCreators'
 import {Link} from 'react-router-dom'
-import {editProfile} from '../redux/actionCreators'
+import {editProfile, deleteFavorite} from '../redux/actionCreators'
 import ParticlesContainer from './ParticlesContainer'
-
+import moment from 'moment'
 
 
 const favoritesData = 'http://localhost:3000/favorites'
@@ -76,9 +75,9 @@ editProfile = (user) => {
             <div>
                 <ParticlesContainer className='particles' />
             <h1>{this.props.user.first_name} {this.props.user.last_name}</h1>
-            <Grid centered columns={2} widths='equal'>
-                    <Grid.Column id="UserProfile-Column">
-                    <Segment id="UserProfile-Segment">
+            <Grid columns={2} >
+                    <Grid.Column id="UserProfile-Column" width={7}>
+                    <Segment className="UserProfile-Segment">
                         <Header>Profile Information</Header>
                         <Form onSubmit={this.handleSubmit}>
                         <Form.Input id='first_name' label='First Name' value={this.state.first_name} onChange={e => this.onTodoChange(e.target.value)} disabled={this.state.disabled}></Form.Input>
@@ -92,9 +91,9 @@ editProfile = (user) => {
                         {this.state.disabled ? null: <Button type='submit'>Submit Changes</Button>}
                         </Form>
                     </Segment>
-                    </Grid.Column>
-                    <Grid.Column id="UserProfile-Column">
-                    <Segment id="UserProfile-Segment">
+                    </Grid.Column >
+                    <Grid.Column id="UserProfile-Column" width={7}>
+                    <Segment className="UserProfile-Segment">
                         <Header>Favorite Players</Header>
                         {this.props.user.favorites.map(favorite => {
                          return <List key={favorite.player_id} player={favorite.player} >
@@ -108,7 +107,7 @@ editProfile = (user) => {
                                  <Modal.Content>
                                      <p>College: {favorite.player.college}</p>
                                      <p>Years Pro: {favorite.player.yearsPro}</p>
-                                     <p>Date of Birth: {favorite.player.date_of_birth}</p>
+                                     <p>Date of Birth: {moment(favorite.player.date_of_birth).format("LL")}</p>
                                      <p>Country: {favorite.player.country} </p>
                                  </Modal.Content>
                              </Modal>               
