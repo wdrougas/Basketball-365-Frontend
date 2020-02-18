@@ -40,6 +40,8 @@ fetchGameData(game) {
     )
 }
 
+
+
 handleClose() {
     this.setState({
         isModalOpen: false

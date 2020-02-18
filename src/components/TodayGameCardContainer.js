@@ -9,7 +9,7 @@ import ParticlesContainer from './ParticlesContainer'
 
 
 const TodayGameCardContainer = props => {
-    
+    debugger
     const games = props.user.team.home_games.concat(props.user.team.visiting_games)
     const sorted = games.sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     const removalIndex = sorted.findIndex(game => game.arena === "")
@@ -24,7 +24,7 @@ const TodayGameCardContainer = props => {
     // var thirdStory = props.news.articles[2]
     // var fourthStory = props.news.articles[3]
     // var fifthStory = props.news.articles[4]
-    const topStories = props.news.articles.slice(0,13)
+    const topStories = props.news.articles.slice(0,12)
     // debugger
     return (
         <div >
