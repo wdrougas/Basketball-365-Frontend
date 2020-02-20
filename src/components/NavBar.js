@@ -19,7 +19,7 @@ fun() {
                
             <Menu.Item onClick={() => this.props.history.push('/')}>
                         <i className='icon basketball ball' color='black'/>
-                        NBA 365
+                        Basketball 365
             </Menu.Item>
                
             <Menu.Item onClick={() => this.props.history.push('/standings')}>
