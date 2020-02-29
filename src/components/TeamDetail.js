@@ -17,6 +17,14 @@ const headers = {
     "X-RapidAPI-Key": process.env.REACT_APP_API_KEY
   }
 
+const STUBHUB_KEY = process.env.STUBHUB_APP_API_KEY
+const stubhubURL = 'https://api.stubhub.com/sellers/search/events/v3'
+const stubhubHeaders = {
+    "Authorization" : `Bearer ${STUBHUB_KEY}`,
+    "Accept" : 'application/json',
+    "Access-Control-Allow-Origin" : "no-cors"
+}
+
 
 
 class TeamDetail extends React.Component {
@@ -40,7 +48,11 @@ fetchGameData(game) {
     )
 }
 
-
+fetchStubhub() {
+    fetch(stubhubURL, stubhubHeaders)
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
 
 handleClose() {
     this.setState({
@@ -145,7 +157,7 @@ render() {
                        return <Segment vertical >
                        <List.Item onClick={() => this.fetchGameData(game)}>
                             <List.Content>
-                            <List.Header as='a'> {game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
+                            <List.Header as='a' > {game.visiting_team_name} {game.visiting_team_score} | {game.home_team_score} {game.home_team_name} </List.Header>
                            </List.Content>
                         </List.Item>
                         </Segment>
@@ -159,6 +171,7 @@ render() {
             <Modal.Header >
                 <Image avatar src={this.state.game.vTeam.logo}/>  {this.state.game.vTeam.fullName}    {this.state.game.vTeam.score ?  this.state.game.vTeam.score.points: null}   |   {this.state.game.hTeam.score ?  this.state.game.hTeam.score.points : null}      {this.state.game.hTeam.fullName}  <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
+            <Button onClick={() => this.fetchStubhub()}>Click</Button>
             <Modal.Content>
                 
                 {this.state.game.hTeam.leaders[0] ? 
