@@ -19,6 +19,7 @@ const headers = {
 
 const STUBHUB_KEY = process.env.REACT_APP_STUBHUB_API_KEY
 const stubhubURL = 'https://api.stubhub.com/sellers/search/events/v3'
+const proxyURL = 'https://cors-anywhere.herokuapp.com/'
 const stubhubHeaders = {
     "Authorization" : `Bearer ${STUBHUB_KEY}`,
     "Accept" : 'application/json'
@@ -48,7 +49,7 @@ fetchGameData(game) {
 }
 
 fetchStubhub() {
-    fetch(stubhubURL, {
+    fetch(proxyURL + stubhubURL, {
         'method': 'GET',
         'headers': stubhubHeaders
     })
