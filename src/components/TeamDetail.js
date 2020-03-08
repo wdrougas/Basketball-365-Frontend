@@ -18,12 +18,12 @@ const headers = {
   }
 
 const STUBHUB_KEY = process.env.REACT_APP_STUBHUB_API_KEY
-const stubhubURL = 'https://api.stubhub.com/sellers/search/events/v3'
 const proxyURL = 'https://cors-anywhere.herokuapp.com/'
 const stubhubHeaders = {
     "Authorization" : `Bearer ${STUBHUB_KEY}`,
     "Accept" : 'application/json'
 }
+
 
 
 
@@ -36,6 +36,8 @@ class TeamDetail extends React.Component {
             game: null
         }
     }
+    
+
 
 fetchGameData(game) {
     return (
@@ -48,7 +50,11 @@ fetchGameData(game) {
     )
 }
 
-fetchStubhub() {
+fetchStubhub(gameObj) {
+    const games = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
+    const correctGame = games.find(game => game.game_id === parseInt(gameObj.gameId))
+    const nextDay = correctGame.date
+    const stubhubURL = `https://api.stubhub.com/sellers/search/events/v3?q=nba&date=${correctGame.date}%20TO%20${correctGame.date}&performerName=${encodeURIComponent(this.props.team.name)}`
     fetch(proxyURL + stubhubURL, {
         'method': 'GET',
         'headers': stubhubHeaders
@@ -175,7 +181,7 @@ render() {
             <Modal.Header >
                 <Image avatar src={this.state.game.vTeam.logo}/>  {this.state.game.vTeam.fullName}    {this.state.game.vTeam.score ?  this.state.game.vTeam.score.points: null}   |   {this.state.game.hTeam.score ?  this.state.game.hTeam.score.points : null}      {this.state.game.hTeam.fullName}  <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
-            <Button onClick={() => this.fetchStubhub()}>Click</Button>
+            <Button onClick={() => this.fetchStubhub(this.state.game)}>Click</Button>
             <Modal.Content>
                 
                 {this.state.game.hTeam.leaders[0] ? 
