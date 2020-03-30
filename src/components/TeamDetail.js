@@ -50,7 +50,7 @@ fetchGameData(game) {
     )
 }
 
-fetchStubhub(gameObj) {
+fetchStubhub(array) {
     const games = this.props.team.home_games.concat(this.props.team.visiting_games).sort((a,b) => {return Date.parse(a.date) - Date.parse(b.date)})
     const correctGame = games.find(game => game.game_id === parseInt(gameObj.gameId))
     const nextDay = correctGame.date
@@ -181,7 +181,7 @@ render() {
             <Modal.Header >
                 <Image avatar src={this.state.game.vTeam.logo}/>  {this.state.game.vTeam.fullName}    {this.state.game.vTeam.score ?  this.state.game.vTeam.score.points: null}   |   {this.state.game.hTeam.score ?  this.state.game.hTeam.score.points : null}      {this.state.game.hTeam.fullName}  <Image avatar src={this.state.game.hTeam.logo}/>
             </Modal.Header>
-            <Button onClick={() => this.fetchStubhub(this.state.game)}>Click</Button>
+            <Button onClick={() => this.fetchStubhub([[1910, 1950], [1900, 1951], [1945, 2000]])}>Click</Button>
             <Modal.Content>
                 
                 {this.state.game.hTeam.leaders[0] ? 
